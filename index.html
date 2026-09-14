@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gomes & Cortez Advocacia | Consultoria e Assessoria Jurídica</title>
+<meta name="description" content="Gomes & Cortez Advocacia — Consultoria e Assessoria Jurídica.">
+ 
+<!-- =========================================================
+     GUIA RÁPIDO DE EDIÇÃO
+     - Nome do advogado, OAB, telefone, e-mail e endereço:
+       procure por "EDITAR:" nos comentários abaixo.
+     - Cores: variáveis no início do bloco <style> (:root).
+     - Link do WhatsApp: variável JS "whatsappNumero" no final do arquivo.
+     - Imagens: troque as URLs do Unsplash por fotos reais quando tiver.
+     ========================================================= -->
+ 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+ 
+<style>
+  :root{
+    /* ===== PALETA (edite aqui para mudar as cores do site) =====
+       --dourado: cor de destaque usada em botões e ícones sobre fundo CLARO.
+       --dourado-claro: cor de destaque usada em textos/ícones sobre fundo ESCURO
+       (Hero, seção Diferenciais, rodapé) — precisa ter bom contraste com o azul-marinho.
+    */
+    --azul-marinho: #11245C;
+    --azul-marinho-2: #1B3375;
+    --azul-profundo: #0B1942;
+    --dourado: #2C4A94;
+    --dourado-claro: #8FADE8;
+    --branco: #ffffff;
+    --off-white: #F7F8FC;
+    --neutro-100: #EEF1F7;
+    --neutro-300: #DCE2EF;
+    --neutro-500: #7B8498;
+    --neutro-700: #4C556B;
+    --texto-principal: #17213A;
+    --texto-suave: #5E6880;
+    --borda: rgba(17,36,92,0.12);
+    --sombra: 0 20px 50px -25px rgba(11,25,66,0.28);
+    --sombra-suave: 0 10px 30px -18px rgba(11,25,66,0.20);
+ 
+    --serif: 'Fraunces', serif;
+    --sans: 'Source Sans 3', sans-serif;
+  }
+ 
+  *{ margin:0; padding:0; box-sizing:border-box; }
+ 
+  html{ scroll-behavior:smooth; }
+ 
+  body{
+    font-family: var(--sans);
+    color: var(--texto-principal);
+    background: var(--branco);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+ 
+  img{ max-width:100%; display:block; }
+ 
+  a{ text-decoration:none; color:inherit; }
+ 
+  ul{ list-style:none; }
+ 
+  .container{
+    width:100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+ 
+  h1,h2,h3,h4{
+    font-family: var(--serif);
+    font-weight: 600;
+    color: var(--azul-marinho);
+    line-height: 1.15;
+  }
+ 
+  section{ position: relative; }
+ 
+  .eyebrow{
+    color: var(--dourado);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+ 
+  .section-head{
+    max-width: 640px;
+    margin-bottom: 56px;
+  }
+  .section-head.centro{
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+  }
+  .section-head h2{
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    margin-bottom: 18px;
+  }
+  .section-head p{
+    color: var(--texto-suave);
+    font-size: 1.05rem;
+  }
+ 
+  /* ===================== SCROLL REVEAL ===================== */
+  .reveal{
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visivel{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    html{ scroll-behavior:auto; }
+  }
+ 
+  /* ===================== BOTÕES ===================== */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding: 15px 32px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: .2px;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+    white-space: nowrap;
+  }
+  .btn:focus-visible{
+    outline: 2px solid var(--dourado);
+    outline-offset: 3px;
+  }
+  .btn-dourado{
+    background: linear-gradient(135deg, var(--dourado-claro), var(--dourado));
+    color: var(--branco);
+  }
+  .btn-dourado:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px -10px rgba(44,74,148,0.55);
+  }
+  .btn-outline{
+    background: transparent;
+    color: var(--branco);
+    border-color: rgba(255,255,255,0.45);
+  }
+  .btn-outline:hover{
+    background: rgba(255,255,255,0.08);
+    border-color: var(--branco);
+    transform: translateY(-2px);
+  }
+  .btn-marinho{
+    background: var(--azul-marinho);
+    color: var(--branco);
+  }
+  .btn-marinho:hover{
+    background: var(--azul-profundo);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-suave);
+  }
+  .btn-whatsapp{
+    background: #1f7a4d;
+    color: var(--branco);
+  }
+  .btn-whatsapp:hover{
+    background: #196a41;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px -10px rgba(31,122,77,0.5);
+  }
+ 
+  /* ===================== HEADER ===================== */
+  #topo{ height: 1px; }
+ 
+  header{
+    position: fixed;
+    top: 0; left:0; right:0;
+    z-index: 999;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--borda);
+    transition: box-shadow .3s ease;
+  }
+  header.scrolled{ box-shadow: 0 6px 24px -18px rgba(61,13,21,0.4); }
+ 
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 18px 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+ 
+  .logo{
+    display:flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .logo .nome{
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--azul-marinho);
+    letter-spacing: .3px;
+  }
+  .logo .sub{
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+    color: var(--dourado);
+    margin-top: 2px;
+    font-weight: 600;
+  }
+ 
+  nav.menu-principal{
+    display:flex;
+    align-items:center;
+    gap: 38px;
+  }
+  nav.menu-principal a{
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--texto-principal);
+    position: relative;
+    padding: 4px 0;
+    transition: color .2s ease;
+  }
+  nav.menu-principal a::after{
+    content:'';
+    position:absolute;
+    left:0; bottom:-2px;
+    width:0%; height:1.5px;
+    background: var(--dourado);
+    transition: width .25s ease;
+  }
+  nav.menu-principal a:hover{ color: var(--azul-marinho); }
+  nav.menu-principal a:hover::after{ width:100%; }
+ 
+  .header-actions{ display:flex; align-items:center; gap: 22px; }
+ 
+  .btn-menu-mobile{
+    display:none;
+    background:none; border:none; cursor:pointer;
+    font-size: 1.4rem;
+    color: var(--azul-marinho);
+  }
+ 
+  @media (max-width: 940px){
+    nav.menu-principal{
+      position: fixed;
+      top: 0; right: 0;
+      height: 100vh;
+      width: min(320px, 82vw);
+      background: var(--azul-marinho);
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 30px;
+      padding: 40px;
+      transform: translateX(100%);
+      transition: transform .35s ease;
+    }
+    nav.menu-principal.aberto{ transform: translateX(0); }
+    nav.menu-principal a{ color: var(--neutro-100); font-size: 1.1rem; }
+    nav.menu-principal a:hover{ color: var(--dourado-claro); }
+    .header-actions .btn-marinho{ display:none; }
+    .btn-menu-mobile{ display:block; }
+  }
+ 
+  .overlay-menu{
+    position: fixed; inset:0;
+    background: rgba(61,13,21,0.5);
+    z-index: 998;
+    opacity:0; pointer-events:none;
+    transition: opacity .3s ease;
+  }
+  .overlay-menu.ativo{ opacity:1; pointer-events:auto; }
+ 
+  /* ===================== HERO ===================== */
+  .hero{
+    background: linear-gradient(160deg, var(--azul-profundo) 0%, var(--azul-marinho) 55%, var(--azul-marinho-2) 100%);
+    padding: 168px 0 110px;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero::before{
+    content:'';
+    position:absolute;
+    top:-120px; right:-160px;
+    width: 480px; height:480px;
+    border: 1px solid rgba(143,173,232,0.18);
+    border-radius: 50%;
+  }
+  .hero::after{
+    content:'';
+    position:absolute;
+    bottom:-200px; left:-160px;
+    width: 420px; height:420px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 64px;
+    align-items:center;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-texto .eyebrow{ color: var(--dourado-claro); }
+  .hero-texto h1{
+    color: var(--branco);
+    font-size: clamp(2.4rem, 4.2vw, 3.4rem);
+    margin-bottom: 24px;
+  }
+  .hero-texto h1 em{
+    font-style: italic;
+    color: var(--dourado-claro);
+  }
+  .hero-texto p{
+    color: rgba(255,255,255,0.85);
+    font-size: 1.12rem;
+    max-width: 520px;
+    margin-bottom: 38px;
+  }
+  .hero-botoes{
+    display:flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .hero-imagem{
+    position: relative;
+  }
+  .hero-imagem .moldura{
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: var(--sombra);
+  }
+  .hero-imagem img{
+    width: 100%;
+    height: 560px;
+    object-fit: cover;
+  }
+  .hero-imagem .selo{
+    position:absolute;
+    bottom: -28px; left: -28px;
+    background: var(--branco);
+    padding: 22px 26px;
+    border-radius: 4px;
+    box-shadow: var(--sombra-suave);
+    display:flex;
+    align-items:center;
+    gap: 16px;
+  }
+  .hero-imagem .selo .num{
+    font-family: var(--serif);
+    font-size: 2.1rem;
+    color: var(--azul-marinho);
+    font-weight: 600;
+  }
+  .hero-imagem .selo .txt{
+    font-size: 0.82rem;
+    color: var(--texto-suave);
+    line-height: 1.25;
+    max-width: 120px;
+  }
+ 
+  @media (max-width: 940px){
+    .hero{ padding: 140px 0 90px; }
+    .hero-grid{ grid-template-columns: 1fr; gap: 56px; }
+    .hero-texto p{ max-width: 100%; }
+    .hero-imagem{ order:-1; }
+    .hero-imagem img{ height: 380px; }
+    .hero-imagem .selo{ left: 12px; bottom: -22px; padding: 16px 18px; }
+  }
+ 
+  /* ===================== FAIXA CONFIANÇA ===================== */
+  .faixa-confianca{
+    background: var(--off-white);
+    border-bottom: 1px solid var(--borda);
+    padding: 22px 0;
+  }
+  .faixa-confianca .container{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 20px 48px;
+    justify-content: center;
+    align-items:center;
+  }
+  .faixa-confianca span{
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight: 500;
+  }
+  .faixa-confianca span i{ color: var(--dourado); }
+ 
+  /* ===================== PROFISSIONAIS ===================== */
+  .profissionais-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    align-items: stretch;
+  }
+  .profissional-card{
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 5px;
+    overflow:hidden;
+    box-shadow: var(--sombra-suave);
+    display:flex;
+    flex-direction:column;
+  }
+  .profissional-foto{
+    width:100%;
+    height:430px;
+    overflow:hidden;
+    background:var(--neutro-100);
+  }
+  .profissional-foto img {
+    width: 100%;
+    height: 430px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    background: #111;
+  }
+  .profissional-info{ padding: 34px; }
+  .profissional-info h2{ font-size: clamp(1.7rem, 3vw, 2.3rem); margin-bottom:8px; }
+  .profissional-info p{
+    color:var(--texto-suave);
+    margin-bottom:16px;
+    font-size:1rem;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+  }
+  .profissional-info .sobre-lista{ margin-top:24px; }
+  .profissional-contato{ margin-top:28px; }
+  .btn-outline-claro{
+    background:transparent;
+    color:var(--azul-marinho);
+    border-color:var(--azul-marinho);
+  }
+  .btn-outline-claro:hover{
+    background:var(--azul-marinho);
+    color:var(--branco);
+    transform:translateY(-2px);
+  }
+  @media (max-width: 940px){
+    .profissionais-grid{ grid-template-columns:1fr; gap:32px; }
+    .profissional-foto{ height:420px; }
+  }
+  @media (max-width: 560px){
+    .profissional-foto{ height:360px; }
+    .profissional-info{ padding:26px 22px; }
+  }
+
+  /* ===================== SOBRE ===================== */
+  .sobre{ padding: 120px 0; }
+  .sobre-grid{
+    display:grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 72px;
+    align-items: start;
+  }
+  .sobre-foto{
+    position: relative;
+  }
+  .sobre-foto .quadro{
+    border-radius: 4px;
+    overflow:hidden;
+    box-shadow: var(--sombra-suave);
+  }
+  .sobre-foto img{
+    width:100%;
+    height: 520px;
+    object-fit: cover;
+  }
+  .sobre-foto .linha-dourada{
+    position:absolute;
+    top: 24px; left: -24px;
+    width: 100%;
+    height: 100%;
+    border: 1.5px solid var(--dourado);
+    border-radius: 4px;
+    z-index: -1;
+  }
+  .sobre-texto .eyebrow{ display:block; }
+  .sobre-texto h2{
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    margin-bottom: 8px;
+  }
+  .sobre-texto .especialidade{
+    color: var(--dourado);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: .4px;
+    margin-bottom: 22px;
+    display:block;
+  }
+  .sobre-texto p{
+    color: var(--texto-suave);
+    margin-bottom: 18px;
+    font-size: 1.02rem;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+  }
+  .sobre-lista{
+    margin-top: 28px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 28px;
+  }
+  .sobre-lista li{
+    display:flex;
+    align-items:flex-start;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: var(--texto-principal);
+  }
+  .sobre-lista li i{ color: var(--dourado); margin-top: 4px; }
+ 
+  .numeros{
+    margin-top: 48px;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    border-top: 1px solid var(--borda);
+    padding-top: 36px;
+  }
+  .numeros .item .num{
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    color: var(--azul-marinho);
+    font-weight: 600;
+  }
+  .numeros .item .lbl{
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+    margin-top: 4px;
+  }
+  .nota-exemplo{
+    margin-top: 14px;
+    font-size: 0.78rem;
+    color: var(--neutro-500);
+    font-style: italic;
+  }
+ 
+  @media (max-width: 940px){
+    .sobre{ padding: 90px 0; }
+    .sobre-grid{ grid-template-columns: 1fr; gap: 48px; }
+    .sobre-foto{ max-width: 420px; margin: 0 auto; }
+    .sobre-foto .linha-dourada{ display:none; }
+    .numeros{ grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .sobre-lista{ grid-template-columns: 1fr; }
+  }
+ 
+  /* ===================== ÁREAS DE ATUAÇÃO ===================== */
+  .areas{
+    padding: 120px 0;
+    background: var(--off-white);
+  }
+  .grid-areas{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .card-area{
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 4px;
+    padding: 38px 32px;
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .card-area:hover{
+    transform: translateY(-6px);
+    box-shadow: var(--sombra-suave);
+    border-color: rgba(44,74,148,0.4);
+  }
+  .card-area .icone{
+    width: 56px; height:56px;
+    border-radius: 3px;
+    background: var(--azul-marinho);
+    color: var(--dourado-claro);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 1.3rem;
+    margin-bottom: 22px;
+  }
+  .card-area h3{
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  .card-area p{
+    color: var(--texto-suave);
+    font-size: 0.95rem;
+  }
+ 
+  @media (max-width: 940px){
+    .areas{ padding: 90px 0; }
+    .grid-areas{ grid-template-columns: 1fr 1fr; gap: 20px; }
+  }
+  @media (max-width: 620px){
+    .grid-areas{ grid-template-columns: 1fr; }
+  }
+ 
+  /* ===================== COMO FUNCIONA ===================== */
+  .como-funciona{ padding: 120px 0; }
+  .etapas{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .etapa{
+    padding: 0 26px;
+    position: relative;
+    text-align: left;
+  }
+  .etapa:not(:last-child)::after{
+    content:'';
+    position:absolute;
+    top: 27px;
+    right: -14px;
+    width: 28px; height: 1px;
+    background: var(--neutro-300);
+  }
+  .etapa .marcador{
+    width: 54px; height:54px;
+    border-radius: 50%;
+    border: 1.5px solid var(--dourado);
+    color: var(--azul-marinho);
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.2rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom: 22px;
+  }
+  .etapa h3{ font-size: 1.1rem; margin-bottom: 10px; }
+  .etapa p{ color: var(--texto-suave); font-size: 0.92rem; }
+ 
+  @media (max-width: 940px){
+    .como-funciona{ padding: 90px 0; }
+    .etapas{ grid-template-columns: 1fr; gap: 40px; }
+    .etapa:not(:last-child)::after{ display:none; }
+  }
+ 
+  /* ===================== DIFERENCIAIS ===================== */
+  .diferenciais{
+    padding: 120px 0;
+    background: var(--azul-marinho);
+    position: relative;
+    overflow:hidden;
+  }
+  .diferenciais::before{
+    content:'';
+    position:absolute;
+    top: -140px; left: 50%;
+    transform: translateX(-50%);
+    width: 640px; height: 640px;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  .diferenciais .section-head h2,
+  .diferenciais .section-head .eyebrow{ color: var(--branco); }
+  .diferenciais .section-head .eyebrow{ color: var(--dourado-claro); }
+  .diferenciais .section-head p{ color: rgba(255,255,255,0.68); }
+ 
+  .grid-diferenciais{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.08);
+    position: relative;
+    z-index: 2;
+  }
+  .item-diferencial{
+    background: var(--azul-marinho);
+    padding: 40px 34px;
+    transition: background .3s ease;
+  }
+  .item-diferencial:hover{ background: var(--azul-marinho-2); }
+  .item-diferencial i{
+    font-size: 1.5rem;
+    color: var(--dourado-claro);
+    margin-bottom: 20px;
+    display:block;
+  }
+  .item-diferencial h3{
+    color: var(--branco);
+    font-size: 1.08rem;
+    margin-bottom: 10px;
+  }
+  .item-diferencial p{
+    color: rgba(255,255,255,0.65);
+    font-size: 0.9rem;
+  }
+ 
+  @media (max-width: 940px){
+    .diferenciais{ padding: 90px 0; }
+    .grid-diferenciais{ grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 620px){
+    .grid-diferenciais{ grid-template-columns: 1fr; }
+  }
+ 
+  /* ===================== PERGUNTAS FREQUENTES ===================== */
+  .faq{ padding: 120px 0; background: var(--off-white); }
+  .faq-lista{
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .faq-item{
+    border-bottom: 1px solid var(--borda);
+  }
+  .faq-pergunta{
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 26px 4px;
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    color: var(--azul-marinho);
+    cursor: pointer;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    gap: 20px;
+  }
+  .faq-pergunta i{
+    color: var(--dourado);
+    transition: transform .3s ease;
+    flex-shrink: 0;
+  }
+  .faq-item.aberto .faq-pergunta i{ transform: rotate(45deg); }
+  .faq-resposta{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease;
+  }
+  .faq-resposta p{
+    color: var(--texto-suave);
+    padding: 0 4px 26px;
+    font-size: 0.97rem;
+    max-width: 680px;
+  }
+  .faq-aviso{
+    max-width: 800px;
+    margin: 30px auto 0;
+    font-size: 0.85rem;
+    color: var(--neutro-500);
+    text-align:center;
+    font-style: italic;
+  }
+ 
+  @media (max-width: 940px){ .faq{ padding: 90px 0; } }
+ 
+  /* ===================== DEPOIMENTOS ===================== */
+  .depoimentos{ padding: 120px 0; }
+  .grid-depoimentos{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .card-depoimento{
+    background: var(--off-white);
+    border: 1px solid var(--borda);
+    border-radius: 4px;
+    padding: 36px 32px;
+    position: relative;
+  }
+  .card-depoimento .aspas{
+    color: var(--dourado);
+    font-size: 1.6rem;
+    font-family: var(--serif);
+    margin-bottom: 14px;
+    display:block;
+  }
+  .card-depoimento p{
+    font-size: 0.97rem;
+    color: var(--texto-principal);
+    margin-bottom: 22px;
+    font-style: italic;
+  }
+  .card-depoimento .autor{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+  }
+  .card-depoimento .avatar{
+    width: 42px; height:42px;
+    border-radius: 50%;
+    background: var(--azul-marinho);
+    color: var(--dourado-claro);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--serif);
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .card-depoimento .autor .nome{
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--azul-marinho);
+  }
+  .card-depoimento .autor .cargo{
+    font-size: 0.8rem;
+    color: var(--texto-suave);
+  }
+ 
+  @media (max-width: 940px){
+    .depoimentos{ padding: 90px 0; }
+    .grid-depoimentos{ grid-template-columns: 1fr; }
+  }
+ 
+  /* ===================== CTA WHATSAPP ===================== */
+  .cta{
+    background: linear-gradient(135deg, var(--azul-marinho), var(--azul-marinho-2));
+    padding: 76px 0;
+  }
+  .cta-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  .cta h2{
+    color: var(--branco);
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    max-width: 560px;
+  }
+  .cta p{
+    color: rgba(255,255,255,0.82);
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+ 
+  /* ===================== CONTATO ===================== */
+  .contato{ padding: 120px 0; background: var(--off-white); }
+  .contato-grid{
+    display:grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 60px;
+  }
+  .contato-info .item-contato{
+    display:flex;
+    gap: 18px;
+    margin-bottom: 30px;
+  }
+  .contato-info .item-contato i{
+    width: 46px; height:46px;
+    border-radius: 3px;
+    background: var(--azul-marinho);
+    color: var(--dourado-claro);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink: 0;
+    font-size: 1.05rem;
+  }
+  .contato-info .item-contato .rotulo{
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    color: var(--neutro-500);
+    margin-bottom: 4px;
+  }
+  .contato-info .item-contato .valor{
+    font-size: 1rem;
+    color: var(--texto-principal);
+    font-weight: 500;
+  }
+  .mapa-espaco{
+    margin-top: 10px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--borda);
+    height: 240px;
+  }
+  .mapa-espaco iframe{ width:100%; height:100%; border:0; }
+ 
+  .form-card{
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 4px;
+    padding: 44px;
+    box-shadow: var(--sombra-suave);
+  }
+  .form-linha{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .campo{ margin-bottom: 20px; }
+  .campo label{
+    display:block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--azul-marinho);
+    margin-bottom: 8px;
+  }
+  .campo input, .campo textarea{
+    width: 100%;
+    padding: 13px 16px;
+    border: 1px solid var(--neutro-300);
+    border-radius: 3px;
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    color: var(--texto-principal);
+    background: var(--off-white);
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .campo input:focus, .campo textarea:focus{
+    outline: none;
+    border-color: var(--dourado);
+    box-shadow: 0 0 0 3px rgba(44,74,148,0.15);
+    background: var(--branco);
+  }
+  .campo textarea{ resize: vertical; min-height: 120px; }
+  .campo .erro{
+    display:none;
+    color: #b23b3b;
+    font-size: 0.78rem;
+    margin-top: 6px;
+  }
+  .campo.invalido input, .campo.invalido textarea{ border-color: #b23b3b; }
+  .campo.invalido .erro{ display:block; }
+ 
+  .form-mensagem-status{
+    display:none;
+    margin-top: 18px;
+    padding: 14px 18px;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    background: rgba(31,122,77,0.1);
+    color: #1f7a4d;
+    border: 1px solid rgba(31,122,77,0.25);
+  }
+  .form-mensagem-status.mostrar{ display:block; }
+ 
+  @media (max-width: 940px){
+    .contato{ padding: 90px 0; }
+    .contato-grid{ grid-template-columns: 1fr; gap: 44px; }
+    .form-linha{ grid-template-columns: 1fr; gap:0; }
+    .form-card{ padding: 30px; }
+  }
+ 
+  /* ===================== FOOTER ===================== */
+  footer{
+    background: var(--azul-profundo);
+    color: rgba(255,255,255,0.7);
+    padding: 76px 0 28px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .footer-marca .nome{
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--branco);
+    margin-bottom: 14px;
+  }
+  .footer-marca p{
+    font-size: 0.9rem;
+    max-width: 300px;
+    line-height: 1.7;
+  }
+  .footer-col h4{
+    color: var(--branco);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    letter-spacing: .4px;
+    margin-bottom: 20px;
+  }
+  .footer-col ul li{ margin-bottom: 12px; }
+  .footer-col ul li a{
+    font-size: 0.9rem;
+    transition: color .2s ease;
+  }
+  .footer-col ul li a:hover{ color: var(--dourado-claro); }
+ 
+  .footer-social{
+    display:flex;
+    gap: 12px;
+    margin-top: 6px;
+  }
+  .footer-social a{
+    width: 38px; height:38px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    display:flex; align-items:center; justify-content:center;
+    transition: background .2s ease, border-color .2s ease;
+  }
+  .footer-social a:hover{ background: var(--dourado); border-color: var(--dourado); color: var(--branco); }
+ 
+  .footer-baixo{
+    padding-top: 26px;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 0.82rem;
+  }
+ 
+  @media (max-width: 940px){
+    .footer-grid{ grid-template-columns: 1fr 1fr; gap: 36px; }
+  }
+  @media (max-width: 560px){
+    .footer-grid{ grid-template-columns: 1fr; }
+  }
+ 
+  /* ===================== BOTÕES FLUTUANTES ===================== */
+  .flutuante-whatsapp{
+    position: fixed;
+    right: 26px; bottom: 26px;
+    width: 58px; height:58px;
+    border-radius: 50%;
+    background: #1f7a4d;
+    color: var(--branco);
+    display:flex; align-items:center; justify-content:center;
+    font-size: 1.5rem;
+    box-shadow: 0 12px 28px -10px rgba(31,122,77,0.6);
+    z-index: 500;
+    transition: transform .25s ease;
+  }
+  .flutuante-whatsapp:hover{ transform: scale(1.08); }
+ 
+  .voltar-topo{
+    position: fixed;
+    right: 26px; bottom: 96px;
+    width: 44px; height:44px;
+    border-radius: 50%;
+    background: var(--azul-marinho);
+    color: var(--branco);
+    display:flex; align-items:center; justify-content:center;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity .3s ease, transform .3s ease, background .2s ease;
+    z-index: 500;
+  }
+  .voltar-topo.visivel{ opacity:1; pointer-events:auto; transform: translateY(0); }
+  .voltar-topo:hover{ background: var(--dourado); color: var(--branco); }
+ 
+  @media (max-width: 560px){
+    .flutuante-whatsapp{ width: 52px; height:52px; right:18px; bottom:18px; font-size:1.3rem; }
+    .voltar-topo{ right:18px; bottom: 82px; width:40px; height:40px; }
+  }
+</style>
+</head>
+<body>
+ 
+<div id="topo"></div>
+ 
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+<header id="header">
+  <div class="header-inner">
+    <a href="#topo" class="logo">
+      <!-- EDITAR: nome do advogado/escritório -->
+      <span class="nome">Gomes &amp; Cortez</span>
+      <span class="sub">ADVOCACIA</span>
+    </a>
+ 
+    <nav class="menu-principal" id="menuPrincipal">
+      <a href="#topo" class="link-menu">Início</a>
+      <a href="#sobre" class="link-menu">Sobre</a>
+      <a href="#areas" class="link-menu">Áreas de Atuação</a>
+      <a href="#diferenciais" class="link-menu">Diferenciais</a>
+      <a href="#contato" class="link-menu">Contato</a>
+    </nav>
+ 
+    <div class="header-actions">
+      <a href="#contato" class="btn btn-marinho">Fale Conosco</a>
+      <button class="btn-menu-mobile" id="btnMenuMobile" aria-label="Abrir menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="overlay-menu" id="overlayMenu"></div>
+ 
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-texto reveal">
+      <span class="eyebrow">Consultoria e assessoria jurídica</span>
+      <h1>A defesa dos seus direitos começa com <em>quem entende do assunto</em></h1>
+      <p>
+        <!-- EDITAR: texto de apresentação -->
+        Atuação jurídica pautada em ética, técnica e proximidade com o cliente. Cada caso é analisado
+        com atenção individual, buscando a solução mais adequada para a sua situação.
+      </p>
+      <div class="hero-botoes">
+        <a href="#contato" class="btn btn-dourado">Agende uma Consulta</a>
+        <a href="#sobre" class="btn btn-outline">Conheça as Profissionais</a>
+      </div>
+    </div>
+ 
+    <div class="hero-imagem reveal">
+      <div class="moldura">
+        <img
+          src="capa landpage giovanna.jpg"
+          alt="Advogado em escritório analisando documentos jurídicos">
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<div class="faixa-confianca">
+  <div class="container">
+    <span><i class="fa-solid fa-shield-halved"></i> Sigilo e confidencialidade</span>
+    <span><i class="fa-solid fa-handshake"></i> Atendimento personalizado</span>
+    <span><i class="fa-solid fa-comments"></i> Comunicação clara e direta</span>
+  </div>
+</div>
+ 
+<!-- =========================================================
+     PROFISSIONAIS
+     ========================================================= -->
+<section class="sobre" id="sobre">
+  <div class="container">
+    <div class="section-head centro reveal">
+      <span class="eyebrow">Nossa equipe</span>
+      <h2>Conheça nossas profissionais</h2>
+      <p>Atendimento jurídico personalizado, com experiência, ética e compromisso.</p>
+    </div>
+
+    <div class="profissionais-grid">
+
+      <!-- =====================================================
+           ADVOGADA 1 — GIOVANNA GOMES
+           Os dados abaixo já estão preenchidos.
+           ===================================================== -->
+      <article class="profissional-card reveal">
+        <div class="profissional-foto">
+          <img src="giovanna prof2.jpg" alt="Dra. Giovanna Gomes">
+        </div>
+        <div class="profissional-info">
+          <span class="eyebrow">Advogada</span>
+          <h2> Dra. Giovanna Gomes</h2>
+          <p>Formada em Direito pelo Centro Universitário de Brasília, atuo auxiliando pessoas físicas e empresas a resolverem questões jurídicas com segurança e clareza. Acredito que um bom trabalho jurídico começa na escuta atenta de cada cliente.</p>
+          <p>Minha atuação é pautada por três valores centrais: ética profissional, transparência em cada etapa do processo e comunicação acessível, sem o "juridiquês" que afasta as pessoas do seu próprio caso.</p>
+          <ul class="sobre-lista">
+            <li><i class="fa-solid fa-graduation-cap"></i> Graduação em Direito</li>
+            <li><i class="fa-solid fa-certificate"></i>Pós-graduação em Direito de Família e Sucessões e em Direito Tributário</li>
+            <li><i class="fa-solid fa-building-columns"></i> OAB/DF 86.132</li>
+            <li><i class="fa-solid fa-laptop"></i> Atendimento online e Presencial</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- =====================================================
+           ADVOGADA 2 — PREENCHA AQUI
+           Troque apenas os textos e o nome da imagem.
+           ===================================================== -->
+      <article class="profissional-card profissional-2 reveal">
+        <div class="profissional-foto">
+          <!-- COLOQUE A FOTO DA ADVOGADA 2 NA MESMA PASTA DO HTML
+               e troque "advogada2.jpg" pelo nome do arquivo. -->
+          <img src="nat profi1.jpg" alt="Foto profissional da Advogada 2">
+        </div>
+        <div class="profissional-info">
+          <span class="eyebrow">Advogada</span>
+          <!-- EDITAR: nome -->
+          <h2>Dra. Natália Cortez</h2>
+          <!-- EDITAR: especialidades -->
+          <!-- EDITAR: biografia -->
+          <p>Formada em Direito pelo Centro Universitário de Brasília, venho construindo minha trajetória profissional auxiliando pessoas e empresas na busca por soluções jurídicas seguras e adequadas às suas necessidades. Meu trabalho é baseado na compreensão individual de cada situação, buscando sempre oferecer um atendimento atento e responsável.</p>
+          <!-- EDITAR: segundo parágrafo -->
+          <p>Minha atuação tem como pilares a ética, o comprometimento e a transparência. Busco tornar as questões jurídicas mais claras e acessíveis, proporcionando ao cliente segurança para compreender suas opções e tomar decisões de forma consciente.</p>
+          <ul class="sobre-lista">
+            <!-- EDITAR: informações -->
+            <li><i class="fa-solid fa-graduation-cap"></i> Graduação em Direito</li>
+            <li><i class="fa-solid fa-certificate"></i> Pós-graduação em Direito de Família e Sucessões e em Direito Tributário</li>
+            <li><i class="fa-solid fa-building-columns"></i> OAB/DF 84.602</li>
+            <li><i class="fa-solid fa-laptop"></i> Atendimento online e Presencial</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     ÁREAS DE ATUAÇÃO
+     ========================================================= -->
+<section class="areas" id="areas">
+  <div class="container">
+    <div class="section-head centro reveal">
+      <span class="eyebrow">Áreas de atuação</span>
+      <h2>Especialidades jurídicas</h2>
+      <p>Consultoria e assessoria jurídica.</p>
+    </div>
+
+    <div class="grid-areas">
+      <div class="card-area reveal">
+        <div class="icone"><i class="fa-solid fa-scale-balanced"></i></div>
+        <h3>Direito Tributário</h3>
+        <p>Consultoria e assessoria jurídica na área tributária.</p>
+      </div>
+
+      <div class="card-area reveal">
+        <div class="icone"><i class="fa-solid fa-landmark"></i></div>
+        <h3>Direito das Sucessões</h3>
+        <p>Consultoria e assessoria jurídica na área de sucessões.</p>
+      </div>
+
+      <div class="card-area reveal">
+        <div class="icone"><i class="fa-solid fa-people-roof"></i></div>
+        <h3>Direito de Família</h3>
+        <p>Consultoria e assessoria jurídica na área de família.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     COMO FUNCIONA
+     ========================================================= -->
+<section class="como-funciona">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Como funciona</span>
+      <h2>Um processo claro, do primeiro contato à solução</h2>
+    </div>
+ 
+    <div class="etapas">
+      <div class="etapa reveal">
+        <div class="marcador">1</div>
+        <h3>Primeiro contato</h3>
+        <p>Você entra em contato e apresenta o seu caso com total sigilo.</p>
+      </div>
+      <div class="etapa reveal">
+        <div class="marcador">2</div>
+        <h3>Análise do caso</h3>
+        <p>Avaliação detalhada da documentação e do contexto jurídico envolvido.</p>
+      </div>
+      <div class="etapa reveal">
+        <div class="marcador">3</div>
+        <h3>Estratégia jurídica</h3>
+        <p>Definição do melhor caminho, com explicação clara das opções disponíveis.</p>
+      </div>
+      <div class="etapa reveal">
+        <div class="marcador">4</div>
+        <h3>Acompanhamento</h3>
+        <p>Atualizações periódicas sobre o andamento do processo até a sua conclusão.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- =========================================================
+     DIFERENCIAIS
+     ========================================================= -->
+<section class="diferenciais" id="diferenciais">
+  <div class="container">
+    <div class="section-head centro reveal">
+      <span class="eyebrow">Diferenciais</span>
+      <h2>Por que escolher este escritório</h2>
+      <p>Um trabalho jurídico construído sobre confiança, clareza e comprometimento genuíno.</p>
+    </div>
+  </div>
+ 
+  <div class="container">
+    <div class="grid-diferenciais reveal">
+      <div class="item-diferencial">
+        <i class="fa-solid fa-user-check"></i>
+        <h3>Atendimento personalizado</h3>
+        <p>Cada cliente é ouvido individualmente, e atendido de acordo com suas demandas.</p>
+      </div>
+      <div class="item-diferencial">
+        <i class="fa-solid fa-eye"></i>
+        <h3>Transparência</h3>
+        <p>Informações claras sobre prazos, custos e andamento do processo.</p>
+      </div>
+      <div class="item-diferencial">
+        <i class="fa-solid fa-comment-dots"></i>
+        <h3>Comunicação clara</h3>
+        <p>Explicações em linguagem acessível, sem termos técnicos desnecessários.</p>
+      </div>
+      <div class="item-diferencial">
+        <i class="fa-solid fa-chess"></i>
+        <h3>Estratégia jurídica</h3>
+        <p>Planejamento cuidadoso para cada etapa do caso.</p>
+      </div>
+      <div class="item-diferencial">
+        <i class="fa-solid fa-heart"></i>
+        <h3>Compromisso com o cliente</h3>
+        <p>Dedicação integral aos interesses de quem confia neste trabalho.</p>
+      </div>
+      <div class="item-diferencial">
+        <i class="fa-solid fa-lock"></i>
+        <h3>Sigilo profissional</h3>
+        <p>Confidencialidade absoluta sobre todas as informações compartilhadas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- =========================================================
+     PERGUNTAS FREQUENTES
+     ========================================================= -->
+<section class="faq">
+  <div class="container">
+    <div class="section-head centro reveal">
+      <span class="eyebrow">Dúvidas comuns</span>
+      <h2>Perguntas frequentes sobre o atendimento jurídico</h2>
+    </div>
+ 
+    <div class="faq-lista reveal">
+      <div class="faq-item">
+        <button class="faq-pergunta">
+          Como funciona a primeira consulta?
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <div class="faq-resposta">
+          <p>Na primeira conversa, você apresenta o seu caso e recebe orientações gerais sobre os
+          caminhos jurídicos possíveis, sem compromisso.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pergunta">
+          Quais documentos são necessários?
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <div class="faq-resposta">
+          <p>A lista varia conforme o tipo de caso. Após o primeiro contato, você recebe uma orientação
+          específica sobre a documentação necessária.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pergunta">
+          Quanto tempo dura um processo judicial?
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <div class="faq-resposta">
+          <p>O prazo varia de acordo com a complexidade do caso, o volume de trabalho do Judiciário e
+          outros fatores. Cada situação é avaliada individualmente.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pergunta">
+          O atendimento pode ser feito online?
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <div class="faq-resposta">
+          <p>Sim, é possível realizar consultas e acompanhamento à distância, conforme a preferência e a
+          necessidade do cliente.</p>
+        </div>
+      </div>
+</section>
+ 
+<!-- =========================================================
+     DEPOIMENTOS
+     ========================================================= -->
+<section class="depoimentos">
+  <div class="container">
+    <div class="section-head centro reveal">
+      <span class="eyebrow">Depoimentos</span>
+      <h2>O que dizem os clientes</h2>
+    </div>
+ 
+    <div class="grid-depoimentos">
+      <div class="card-depoimento reveal">
+        <span class="aspas">"</span>
+        <p>Fui muito bem orientada durante todo o processo. A comunicação clara fez toda a diferença
+        para eu entender cada etapa do meu caso.</p>
+        <div class="autor">
+          <div class="avatar">M</div>
+          <div>
+            <div class="nome">Marcelo D.Silva. <!-- exemplo --></div>
+            <div class="cargo">Cliente — Direito de Família</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-depoimento reveal">
+        <span class="aspas">"</span>
+        <p>Profissionalismo e atenção aos detalhes desde a primeira reunião. Me senti segura em relação
+        às decisões que precisei tomar.</p>
+        <div class="autor">
+          <div class="avatar">C</div>
+          <div>
+            <div class="nome">Carlos E. <!-- exemplo --></div>
+            <div class="cargo">Cliente — Direito Empresarial</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-depoimento reveal">
+        <span class="aspas">"</span>
+        <p>Atendimento atencioso do início ao fim. Recomendo para quem busca orientação jurídica séria
+        e transparente.</p>
+        <div class="autor">
+          <div class="avatar">P</div>
+          <div>
+            <div class="nome">Maria L. <!-- exemplo --></div>
+            <div class="cargo">Cliente — Direito Trabalhista</div>
+          </div>
+        </div>
+      </div>
+</section>
+ 
+<!-- =========================================================
+     CTA WHATSAPP
+     ========================================================= -->
+<section class="cta">
+  <div class="container cta-inner">
+    <div>
+      <h2>Precisa de orientação jurídica?</h2>
+      <p>Converse agora mesmo e entenda quais são os próximos passos para o seu caso.</p>
+    </div>
+    <a href="#" class="btn btn-dourado link-whatsapp" target="_blank" rel="noopener">
+      <i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp
+    </a>
+  </div>
+</section>
+ 
+<!-- =========================================================
+     CONTATO
+     ========================================================= -->
+<section class="contato" id="contato">
+  <div class="container contato-grid">
+    <div class="contato-info reveal">
+      <span class="eyebrow">Contato</span>
+      <h2 style="margin-bottom: 30px;">Vamos conversar sobre o seu caso</h2>
+ 
+      <div class="item-contato">
+        <div>     
+        </div>
+      </div>
+      <div class="item-contato">
+        <i class="fa-brands fa-whatsapp"></i>
+        <div>
+          <div class="rotulo">WhatsApp</div>
+          <!-- EDITAR: whatsapp -->
+          <div class="valor">(61) 99610-6388</div>
+        </div>
+      </div>
+      <div class="item-contato">
+        <i class="fa-solid fa-envelope"></i>
+        <div>
+          <div class="rotulo">E-mail</div>
+          <!-- EDITAR: e-mail -->
+          <div class="valor">adv.gomescortez@gmail.com</div>
+        </div>
+      </div>
+      <div class="item-contato">
+        <i class="fa-solid fa-clock"></i>
+        <div>
+          <div class="rotulo">Horário de atendimento</div>
+          <!-- EDITAR: horário -->
+          <div class="valor">Segunda a sexta, 9h às 18h</div>
+        </div>
+      </div>
+ 
+      
+    </div>
+ 
+    <div class="reveal">
+      <div class="form-card">
+        <h3 style="margin-bottom:26px;">Envie uma mensagem</h3>
+        <form id="formContato" novalidate>
+          <div class="form-linha">
+            <div class="campo" id="campoNome">
+              <label for="nome">Nome completo</label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome">
+              <span class="erro">Por favor, informe o seu nome.</span>
+            </div>
+            <div class="campo" id="campoTelefone">
+              <label for="telefone">Telefone</label>
+              <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000">
+              <span class="erro">Informe um telefone válido.</span>
+            </div>
+          </div>
+ 
+          <div class="campo" id="campoEmail">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com.br">
+            <span class="erro">Informe um e-mail válido.</span>
+          </div>
+ 
+          <div class="campo" id="campoMensagem">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" placeholder="Descreva brevemente o seu caso..."></textarea>
+            <span class="erro">Escreva uma breve mensagem.</span>
+          </div>
+ 
+          <button type="submit" class="btn btn-dourado" style="width:100%;">Enviar mensagem</button>
+ 
+          <div class="form-mensagem-status" id="statusFormulario">
+            Mensagem enviada com sucesso. Entraremos em contato em breve.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-marca">
+        <!-- EDITAR: nome do escritório -->
+        <div class="nome">Gomes & Cortez Advocacia</div>
+        <p>Atuação jurídica pautada em ética, técnica e proximidade com o cliente, buscando sempre a
+        melhor solução para o seu caso.</p>
+        <div class="footer-social" style="margin-top:20px;">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+      </div>
+ 
+      <div class="footer-col">
+        <h4>Links rápidos</h4>
+        <ul>
+          <li><a href="#topo">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#areas">Áreas de Atuação</a></li>
+          <li><a href="#diferenciais">Diferenciais</a></li>
+        </ul>
+      </div>
+ 
+      <div class="footer-col">
+        <h4>Áreas de atuação</h4>
+        <ul>
+          <li><a href="#areas">Direito Tributário</a></li>
+          <li><a href="#areas">Direito das Sucessões</a></li>
+          <li><a href="#areas">Direito de Família</a></li>
+        </ul>
+      </div>
+ 
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <!-- EDITAR: repetir dados de contato -->
+          <li><a href="#contato">+55 (61) 99610-6388</a></li>
+          <li><a href="#contato">adv.gomescortez@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+ 
+    <div class="footer-baixo">
+      <span>&copy; <span id="anoAtual"></span> Gomes & Cortez Advocacia. Todos os direitos reservados.</span>
+      <!-- EDITAR: número da OAB -->
+    </div>
+  </div>
+</footer>
+ 
+<a href="#" class="flutuante-whatsapp link-whatsapp" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+<button class="voltar-topo" id="voltarTopo" aria-label="Voltar ao topo">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+ 
+<script>
+(function(){
+ 
+  /* =========================================================
+     CONFIGURAÇÃO RÁPIDA — EDITE AQUI
+     ========================================================= */
+  // Número do WhatsApp no formato internacional, apenas números (com DDI 55 + DDD + número)
+  const whatsappNumero = "5561996106388"; // EDITAR: número real do WhatsApp
+  const whatsappMensagem = "Olá! Gostaria de agendar um atendimento.";
+ 
+  const linkWhats = "https://wa.me/" + whatsappNumero + "?text=" + encodeURIComponent(whatsappMensagem);
+  document.querySelectorAll(".link-whatsapp").forEach(function(el){
+    el.setAttribute("href", linkWhats);
+  });
+ 
+  /* Ano atual no rodapé */
+  document.getElementById("anoAtual").textContent = new Date().getFullYear();
+ 
+  /* =========================================================
+     HEADER: sombra ao rolar + menu mobile
+     ========================================================= */
+  const header = document.getElementById("header");
+  window.addEventListener("scroll", function(){
+    if(window.scrollY > 20){
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+    toggleVoltarTopo();
+  });
+ 
+  const menu = document.getElementById("menuPrincipal");
+  const btnMenu = document.getElementById("btnMenuMobile");
+  const overlay = document.getElementById("overlayMenu");
+ 
+  function abrirMenu(){
+    menu.classList.add("aberto");
+    overlay.classList.add("ativo");
+    btnMenu.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+  }
+  function fecharMenu(){
+    menu.classList.remove("aberto");
+    overlay.classList.remove("ativo");
+    btnMenu.innerHTML = '<i class="fa-solid fa-bars"></i>';
+  }
+  btnMenu.addEventListener("click", function(){
+    menu.classList.contains("aberto") ? fecharMenu() : abrirMenu();
+  });
+  overlay.addEventListener("click", fecharMenu);
+  document.querySelectorAll(".link-menu").forEach(function(a){
+    a.addEventListener("click", fecharMenu);
+  });
+ 
+  /* =========================================================
+     FAQ — abrir/fechar
+     ========================================================= */
+  document.querySelectorAll(".faq-item").forEach(function(item){
+    const pergunta = item.querySelector(".faq-pergunta");
+    const resposta = item.querySelector(".faq-resposta");
+    pergunta.addEventListener("click", function(){
+      const estaAberto = item.classList.contains("aberto");
+      document.querySelectorAll(".faq-item").forEach(function(outro){
+        outro.classList.remove("aberto");
+        outro.querySelector(".faq-resposta").style.maxHeight = null;
+      });
+      if(!estaAberto){
+        item.classList.add("aberto");
+        resposta.style.maxHeight = resposta.scrollHeight + "px";
+      }
+    });
+  });
+ 
+  /* =========================================================
+     ANIMAÇÃO DE ENTRADA AO ROLAR
+     ========================================================= */
+  const elementosReveal = document.querySelectorAll(".reveal");
+  const observador = new IntersectionObserver(function(entradas){
+    entradas.forEach(function(entrada){
+      if(entrada.isIntersecting){
+        entrada.target.classList.add("visivel");
+        observador.unobserve(entrada.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  elementosReveal.forEach(function(el){ observador.observe(el); });
+ 
+  /* =========================================================
+     BOTÃO VOLTAR AO TOPO
+     ========================================================= */
+  const btnVoltarTopo = document.getElementById("voltarTopo");
+  function toggleVoltarTopo(){
+    if(window.scrollY > 480){
+      btnVoltarTopo.classList.add("visivel");
+    } else {
+      btnVoltarTopo.classList.remove("visivel");
+    }
+  }
+  btnVoltarTopo.addEventListener("click", function(){
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+ 
+  /* =========================================================
+     VALIDAÇÃO BÁSICA DO FORMULÁRIO
+     ========================================================= */
+  const form = document.getElementById("formContato");
+  const statusFormulario = document.getElementById("statusFormulario");
+ 
+  function validarCampo(id, condicao){
+    const campo = document.getElementById(id);
+    if(condicao){
+      campo.classList.remove("invalido");
+      return true;
+    } else {
+      campo.classList.add("invalido");
+      return false;
+    }
+  }
+ 
+  form.addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    statusFormulario.classList.remove("mostrar");
+    statusFormulario.style.background = "";
+    statusFormulario.style.color = "";
+    statusFormulario.style.borderColor = "";
+
+    const nome = document.getElementById("nome").value.trim();
+    const telefone = document.getElementById("telefone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const mensagem = document.getElementById("mensagem").value.trim();
+
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const regexTelefone = /[0-9]{8,}/;
+
+    const nomeValido = validarCampo("campoNome", nome.length >= 3);
+    const telefoneValido = validarCampo(
+      "campoTelefone",
+      regexTelefone.test(telefone.replace(/\D/g, ""))
+    );
+    const emailValido = validarCampo(
+      "campoEmail",
+      regexEmail.test(email)
+    );
+    const mensagemValida = validarCampo(
+      "campoMensagem",
+      mensagem.length >= 10
+    );
+
+    if (!(nomeValido && telefoneValido && emailValido && mensagemValida)) {
+      const primeiroInvalido = form.querySelector(".invalido");
+
+      if (primeiroInvalido) {
+        primeiroInvalido.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }
+
+      return;
+    }
+
+    const botao = form.querySelector("button[type='submit']");
+    const textoOriginal = botao.textContent;
+
+    botao.disabled = true;
+    botao.textContent = "Enviando...";
+
+    const dados = new FormData();
+    dados.append("nome", nome);
+    dados.append("telefone", telefone);
+    dados.append("email", email);
+    dados.append("mensagem", mensagem);
+
+    /* =========================================================
+       FORMSPREE
+       Troque a URL abaixo pela URL fornecida pelo Formspree.
+       Exemplo:
+       https://formspree.io/f/abcd1234
+       ========================================================= */
+    const FORMSPREE_URL = "https://formspree.io/f/xrpgjqwv";
+
+    try {
+      const resposta = await fetch(FORMSPREE_URL, {
+        method: "POST",
+        body: dados,
+        headers: {
+          Accept: "application/json"
+        }
+      });
+
+      if (resposta.ok) {
+        statusFormulario.textContent =
+          "Mensagem enviada com sucesso. Entraremos em contato em breve.";
+        statusFormulario.classList.add("mostrar");
+        form.reset();
+      } else {
+        statusFormulario.textContent =
+          "Não foi possível enviar a mensagem. Tente novamente.";
+        statusFormulario.style.background = "rgba(178,59,59,0.1)";
+        statusFormulario.style.color = "#b23b3b";
+        statusFormulario.style.borderColor = "rgba(178,59,59,0.25)";
+        statusFormulario.classList.add("mostrar");
+      }
+    } catch (erro) {
+      statusFormulario.textContent =
+        "Erro de conexão. Verifique sua internet e tente novamente.";
+        statusFormulario.style.background = "rgba(178,59,59,0.1)";
+        statusFormulario.style.color = "#b23b3b";
+        statusFormulario.style.borderColor = "rgba(178,59,59,0.25)";
+        statusFormulario.classList.add("mostrar");
+    } finally {
+      botao.disabled = false;
+      botao.textContent = textoOriginal;
+    }
+  });
+ 
+})();
+</script>
+ 
+</body>
+</html>
