@@ -72,6 +72,9 @@
     margin: 0 auto;
     padding: 0 32px;
   }
+  @media (max-width: 480px){
+    .container{ padding: 0 20px; }
+  }
  
   h1,h2,h3,h4{
     font-family: var(--serif);
@@ -472,6 +475,11 @@
     .profissional-foto{ height:360px; }
     .profissional-info{ padding:26px 22px; }
   }
+  @media (max-width: 600px){
+    /* Em telas estreitas, texto justificado cria espaços grandes entre
+       palavras. Volta para alinhamento à esquerda, mais legível no celular. */
+    .profissional-info p{ text-align:left; hyphens:none; }
+  }
 
   /* ===================== SOBRE ===================== */
   .sobre{ padding: 120px 0; }
@@ -573,6 +581,9 @@
     .numeros{ grid-template-columns: repeat(3,1fr); gap: 16px; }
     .sobre-lista{ grid-template-columns: 1fr; }
   }
+  @media (max-width: 600px){
+    .sobre-texto p{ text-align:left; hyphens:none; }
+  }
  
   /* ===================== ÁREAS DE ATUAÇÃO ===================== */
   .areas{
@@ -665,6 +676,9 @@
     .como-funciona{ padding: 90px 0; }
     .etapas{ grid-template-columns: 1fr; gap: 40px; }
     .etapa:not(:last-child)::after{ display:none; }
+  }
+  @media (max-width: 480px){
+    .etapa{ padding: 0 4px; }
   }
  
   /* ===================== DIFERENCIAIS ===================== */
@@ -1132,7 +1146,7 @@
     <div class="hero-imagem reveal">
       <div class="moldura">
         <img
-          src="capa landpage giovanna.jpg"
+          src="capa_landpage_giovanna.jpg"
           alt="Advogado em escritório analisando documentos jurídicos">
       </div>
     </div>
@@ -1166,7 +1180,7 @@
            ===================================================== -->
       <article class="profissional-card reveal">
         <div class="profissional-foto">
-          <img src="giovanna prof2.jpg" alt="Dra. Giovanna Gomes">
+          <img src="giovanna_prof2.jpg" alt="Dra. Giovanna Gomes">
         </div>
         <div class="profissional-info">
           <span class="eyebrow">Advogada</span>
@@ -1190,7 +1204,7 @@
         <div class="profissional-foto">
           <!-- COLOQUE A FOTO DA ADVOGADA 2 NA MESMA PASTA DO HTML
                e troque "advogada2.jpg" pelo nome do arquivo. -->
-          <img src="nat profi1.jpg" alt="Foto profissional da Advogada 2">
+          <img src="nat_profi1.jpg" alt="Foto profissional da Advogada 2">
         </div>
         <div class="profissional-info">
           <span class="eyebrow">Advogada</span>
@@ -1382,6 +1396,8 @@
           necessidade do cliente.</p>
         </div>
       </div>
+    </div>
+  </div>
 </section>
  
 <!-- =========================================================
@@ -1431,6 +1447,8 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
 </section>
  
 <!-- =========================================================
@@ -1457,10 +1475,6 @@
       <span class="eyebrow">Contato</span>
       <h2 style="margin-bottom: 30px;">Vamos conversar sobre o seu caso</h2>
  
-      <div class="item-contato">
-        <div>     
-        </div>
-      </div>
       <div class="item-contato">
         <i class="fa-brands fa-whatsapp"></i>
         <div>
