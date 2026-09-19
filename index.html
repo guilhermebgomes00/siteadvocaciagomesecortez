@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gomes & Cortez Advocacia | Consultoria e Assessoria Jurídica</title>
 <meta name="description" content="Gomes & Cortez Advocacia — Consultoria e Assessoria Jurídica.">
+
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8NRYQJC1ME"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8NRYQJC1ME');
+</script>
  
 <!-- =========================================================
      GUIA RÁPIDO DE EDIÇÃO
@@ -33,7 +42,8 @@
     --dourado: #2C4A94;
     --dourado-claro: #8FADE8;
     --branco: #ffffff;
-    --off-white: #F7F8FC;
+    --bege: #FAF6EC;
+    --off-white: #F2ECDD;
     --neutro-100: #EEF1F7;
     --neutro-300: #DCE2EF;
     --neutro-500: #7B8498;
@@ -41,9 +51,16 @@
     --texto-principal: #17213A;
     --texto-suave: #5E6880;
     --borda: rgba(17,36,92,0.12);
-    --sombra: 0 20px 50px -25px rgba(11,25,66,0.28);
+    --sombra: 0 24px 60px -28px rgba(11,25,66,0.32);
     --sombra-suave: 0 10px 30px -18px rgba(11,25,66,0.20);
- 
+    --sombra-card: 0 2px 6px rgba(11,25,66,0.05), 0 1px 2px rgba(11,25,66,0.04);
+
+    /* ===== ESCALA (usada para manter espaçamentos e raios consistentes) ===== */
+    --raio-sm: 4px;
+    --raio-md: 6px;
+    --raio-lg: 10px;
+    --espaco-secao: clamp(72px, 9vw, 120px);
+
     --serif: 'Fraunces', serif;
     --sans: 'Source Sans 3', sans-serif;
   }
@@ -51,13 +68,19 @@
   *{ margin:0; padding:0; box-sizing:border-box; }
  
   html{ scroll-behavior:smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
  
   body{
     font-family: var(--sans);
     color: var(--texto-principal);
-    background: var(--branco);
-    line-height: 1.6;
+    background: var(--bege);
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
  
   img{ max-width:100%; display:block; }
@@ -75,12 +98,17 @@
   @media (max-width: 480px){
     .container{ padding: 0 20px; }
   }
+  @media (max-width: 380px){
+    .container{ padding: 0 16px; }
+  }
  
   h1,h2,h3,h4{
     font-family: var(--serif);
     font-weight: 600;
     color: var(--azul-marinho);
     line-height: 1.15;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
   }
  
   section{ position: relative; }
@@ -91,13 +119,39 @@
     font-style: italic;
     font-size: 1.05rem;
     font-weight: 500;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     display: inline-block;
   }
+
+  /* Traço decorativo dourado com marcador — reforça a hierarquia entre
+     título e texto, inspirado na referência enviada pelo cliente. */
+  .linha-mini{
+    display:flex;
+    align-items:center;
+    gap: 8px;
+    width: fit-content;
+    margin: 4px 0 24px;
+  }
+  .linha-mini::before{
+    content:'';
+    width: 42px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--dourado), var(--dourado-claro));
+  }
+  .linha-mini::after{
+    content:'';
+    width: 7px;
+    height: 7px;
+    background: var(--dourado);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+  .section-head.centro .linha-mini{ margin-left:auto; margin-right:auto; }
+  .section-head p{ margin-top: -4px; }
  
   .section-head{
     max-width: 640px;
-    margin-bottom: 56px;
+    margin-bottom: clamp(40px, 6vw, 56px);
   }
   .section-head.centro{
     margin-left:auto;
@@ -105,8 +159,8 @@
     text-align:center;
   }
   .section-head h2{
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
-    margin-bottom: 18px;
+    font-size: clamp(1.75rem, 3vw, 2.6rem);
+    margin-bottom: 6px;
   }
   .section-head p{
     color: var(--texto-suave);
@@ -134,15 +188,15 @@
     align-items:center;
     justify-content:center;
     gap:10px;
-    padding: 15px 32px;
+    padding: 16px 34px;
     font-family: var(--sans);
     font-weight: 600;
     font-size: 0.95rem;
     letter-spacing: .2px;
-    border-radius: 3px;
+    border-radius: var(--raio-sm);
     cursor: pointer;
     border: 1px solid transparent;
-    transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+    transition: transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
     white-space: nowrap;
   }
   .btn:focus-visible{
@@ -152,11 +206,13 @@
   .btn-dourado{
     background: linear-gradient(135deg, var(--dourado-claro), var(--dourado));
     color: var(--branco);
+    box-shadow: 0 10px 24px -14px rgba(44,74,148,0.6);
   }
   .btn-dourado:hover{
     transform: translateY(-2px);
-    box-shadow: 0 14px 28px -10px rgba(44,74,148,0.55);
+    box-shadow: 0 16px 32px -12px rgba(44,74,148,0.55);
   }
+  .btn-dourado:active{ transform: translateY(0); }
   .btn-outline{
     background: transparent;
     color: var(--branco);
@@ -193,21 +249,28 @@
     position: fixed;
     top: 0; left:0; right:0;
     z-index: 999;
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--borda);
-    transition: box-shadow .3s ease;
+    background: rgba(250,246,236,0.86);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: box-shadow .35s ease, border-color .35s ease, background .35s ease, padding .3s ease;
   }
-  header.scrolled{ box-shadow: 0 6px 24px -18px rgba(61,13,21,0.4); }
+  header.scrolled{
+    box-shadow: 0 10px 30px -20px rgba(11,25,66,0.35);
+    border-bottom-color: var(--borda);
+    background: rgba(250,246,236,0.96);
+  }
  
   .header-inner{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding: 18px 32px;
+    padding: 20px 32px;
     max-width: 1200px;
     margin: 0 auto;
+    transition: padding .3s ease;
   }
+  header.scrolled .header-inner{ padding: 14px 32px; }
  
   .logo{
     display:flex;
@@ -296,7 +359,7 @@
   /* ===================== HERO ===================== */
   .hero{
     background: linear-gradient(160deg, var(--azul-profundo) 0%, var(--azul-marinho) 55%, var(--azul-marinho-2) 100%);
-    padding: 168px 0 110px;
+    padding: clamp(128px, 18vw, 172px) 0 clamp(80px, 10vw, 112px);
     overflow: hidden;
     position: relative;
   }
@@ -316,6 +379,21 @@
     border: 1px solid rgba(255,255,255,0.06);
     border-radius: 50%;
   }
+  .hero-brilho{
+    position:absolute;
+    top:0; left:0; right:0; height:100%;
+    background: radial-gradient(680px 420px at 18% 0%, rgba(143,173,232,0.12), transparent 60%);
+    pointer-events:none;
+    z-index: 1;
+  }
+  .hero-padrao{
+    position:absolute;
+    top: 36px; left: 32px;
+    width: 168px; height: 168px;
+    z-index: 1;
+    opacity: 1;
+  }
+  @media (max-width: 1080px){ .hero-padrao{ display:none; } }
   .hero-grid{
     display:grid;
     grid-template-columns: 1.05fr 0.95fr;
@@ -327,13 +405,15 @@
   .hero-texto .eyebrow{ color: var(--dourado-claro); }
   .hero-texto h1{
     color: var(--branco);
-    font-size: clamp(2.4rem, 4.2vw, 3.4rem);
-    margin-bottom: 24px;
+    font-size: clamp(2.3rem, 4.2vw, 3.4rem);
+    margin-bottom: 6px;
+    max-width: 15ch;
   }
   .hero-texto h1 em{
     font-style: italic;
     color: var(--dourado-claro);
   }
+  .linha-mini-hero{ margin-bottom: 26px; }
   .hero-texto p{
     color: rgba(255,255,255,0.85);
     font-size: 1.12rem;
@@ -347,12 +427,44 @@
   }
   .hero-imagem{
     position: relative;
+    padding: 30px 30px 30px 0;
+  }
+  .hero-bloco{
+    position:absolute;
+    top: 0; right: 0;
+    width: 82%;
+    height: 86%;
+    background: linear-gradient(135deg, var(--dourado-claro), var(--dourado));
+    border-radius: var(--raio-lg);
+    z-index: 0;
+  }
+  .hero-bloco-2{
+    position:absolute;
+    bottom: 0; left: 6px;
+    width: 46%;
+    height: 40%;
+    background: var(--off-white);
+    border-radius: var(--raio-lg);
+    z-index: 0;
+  }
+  @media (max-width: 940px){
+    .hero-imagem{ padding: 22px 22px 22px 0; }
+    .hero-bloco, .hero-bloco-2{ display:none; }
   }
   .hero-imagem .moldura{
     position: relative;
-    border-radius: 4px;
+    z-index: 1;
+    border-radius: var(--raio-lg);
     overflow: hidden;
     box-shadow: var(--sombra);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .hero-imagem .moldura::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background: linear-gradient(200deg, rgba(11,25,66,0) 55%, rgba(11,25,66,0.35) 100%);
+    pointer-events:none;
   }
   .hero-imagem img{
     width: 100%;
@@ -362,13 +474,14 @@
   .hero-imagem .selo{
     position:absolute;
     bottom: -28px; left: -28px;
-    background: var(--branco);
+    background: var(--bege);
     padding: 22px 26px;
-    border-radius: 4px;
+    border-radius: var(--raio-md);
     box-shadow: var(--sombra-suave);
     display:flex;
     align-items:center;
     gap: 16px;
+    z-index: 2;
   }
   .hero-imagem .selo .num{
     font-family: var(--serif);
@@ -384,12 +497,18 @@
   }
  
   @media (max-width: 940px){
-    .hero{ padding: 140px 0 90px; }
     .hero-grid{ grid-template-columns: 1fr; gap: 56px; }
-    .hero-texto p{ max-width: 100%; }
+    .hero-texto{ text-align:center; }
+    .hero-texto h1{ max-width: 100%; }
+    .hero-texto p{ max-width: 100%; margin-left:auto; margin-right:auto; }
+    .hero-botoes{ justify-content:center; }
     .hero-imagem{ order:-1; }
     .hero-imagem img{ height: 380px; }
-    .hero-imagem .selo{ left: 12px; bottom: -22px; padding: 16px 18px; }
+    .hero-imagem .selo{ left: 50%; transform: translateX(-50%); bottom: -22px; padding: 16px 18px; }
+  }
+  @media (max-width: 480px){
+    .hero-imagem img{ height: 320px; }
+    .hero-imagem .selo{ width: calc(100% - 24px); justify-content:center; }
   }
  
   /* ===================== FAIXA CONFIANÇA ===================== */
@@ -423,13 +542,27 @@
     align-items: stretch;
   }
   .profissional-card{
-    background: var(--branco);
+    background: var(--bege);
     border: 1px solid var(--borda);
-    border-radius: 5px;
+    border-radius: var(--raio-md);
     overflow:hidden;
-    box-shadow: var(--sombra-suave);
+    box-shadow: var(--sombra-card);
     display:flex;
     flex-direction:column;
+    position: relative;
+    transition: box-shadow .35s ease, transform .35s ease;
+  }
+  .profissional-card::before{
+    content:'';
+    position:absolute;
+    top:0; left:0; right:0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--dourado), var(--dourado-claro));
+    z-index: 2;
+  }
+  .profissional-card:hover{
+    box-shadow: var(--sombra-suave);
+    transform: translateY(-4px);
   }
   .profissional-foto{
     width:100%;
@@ -482,7 +615,7 @@
   }
 
   /* ===================== SOBRE ===================== */
-  .sobre{ padding: 120px 0; }
+  .sobre{ padding: var(--espaco-secao) 0; }
   .sobre-grid{
     display:grid;
     grid-template-columns: 0.85fr 1.15fr;
@@ -493,7 +626,7 @@
     position: relative;
   }
   .sobre-foto .quadro{
-    border-radius: 4px;
+    border-radius: var(--raio-sm);
     overflow:hidden;
     box-shadow: var(--sombra-suave);
   }
@@ -508,7 +641,7 @@
     width: 100%;
     height: 100%;
     border: 1.5px solid var(--dourado);
-    border-radius: 4px;
+    border-radius: var(--raio-sm);
     z-index: -1;
   }
   .sobre-texto .eyebrow{ display:block; }
@@ -574,7 +707,6 @@
   }
  
   @media (max-width: 940px){
-    .sobre{ padding: 90px 0; }
     .sobre-grid{ grid-template-columns: 1fr; gap: 48px; }
     .sobre-foto{ max-width: 420px; margin: 0 auto; }
     .sobre-foto .linha-dourada{ display:none; }
@@ -587,7 +719,7 @@
  
   /* ===================== ÁREAS DE ATUAÇÃO ===================== */
   .areas{
-    padding: 120px 0;
+    padding: var(--espaco-secao) 0;
     background: var(--off-white);
   }
   .grid-areas{
@@ -596,10 +728,11 @@
     gap: 28px;
   }
   .card-area{
-    background: var(--branco);
+    background: var(--bege);
     border: 1px solid var(--borda);
-    border-radius: 4px;
+    border-radius: var(--raio-md);
     padding: 38px 32px;
+    box-shadow: var(--sombra-card);
     transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
   }
   .card-area:hover{
@@ -609,7 +742,7 @@
   }
   .card-area .icone{
     width: 56px; height:56px;
-    border-radius: 3px;
+    border-radius: var(--raio-sm);
     background: var(--azul-marinho);
     color: var(--dourado-claro);
     display:flex;
@@ -617,7 +750,9 @@
     justify-content:center;
     font-size: 1.3rem;
     margin-bottom: 22px;
+    transition: transform .3s ease;
   }
+  .card-area:hover .icone{ transform: scale(1.08); }
   .card-area h3{
     font-size: 1.2rem;
     margin-bottom: 10px;
@@ -628,7 +763,6 @@
   }
  
   @media (max-width: 940px){
-    .areas{ padding: 90px 0; }
     .grid-areas{ grid-template-columns: 1fr 1fr; gap: 20px; }
   }
   @media (max-width: 620px){
@@ -636,7 +770,7 @@
   }
  
   /* ===================== COMO FUNCIONA ===================== */
-  .como-funciona{ padding: 120px 0; }
+  .como-funciona{ padding: var(--espaco-secao) 0; }
   .etapas{
     display:grid;
     grid-template-columns: repeat(4, 1fr);
@@ -673,7 +807,6 @@
   .etapa p{ color: var(--texto-suave); font-size: 0.92rem; }
  
   @media (max-width: 940px){
-    .como-funciona{ padding: 90px 0; }
     .etapas{ grid-template-columns: 1fr; gap: 40px; }
     .etapa:not(:last-child)::after{ display:none; }
   }
@@ -683,7 +816,7 @@
  
   /* ===================== DIFERENCIAIS ===================== */
   .diferenciais{
-    padding: 120px 0;
+    padding: var(--espaco-secao) 0;
     background: var(--azul-marinho);
     position: relative;
     overflow:hidden;
@@ -717,10 +850,16 @@
   }
   .item-diferencial:hover{ background: var(--azul-marinho-2); }
   .item-diferencial i{
-    font-size: 1.5rem;
+    width: 46px; height: 46px;
+    font-size: 1.15rem;
     color: var(--dourado-claro);
-    margin-bottom: 20px;
-    display:block;
+    background: rgba(143,173,232,0.12);
+    border: 1px solid rgba(143,173,232,0.3);
+    border-radius: var(--raio-sm);
+    margin-bottom: 22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
   }
   .item-diferencial h3{
     color: var(--branco);
@@ -733,7 +872,6 @@
   }
  
   @media (max-width: 940px){
-    .diferenciais{ padding: 90px 0; }
     .grid-diferenciais{ grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 620px){
@@ -741,7 +879,7 @@
   }
  
   /* ===================== PERGUNTAS FREQUENTES ===================== */
-  .faq{ padding: 120px 0; background: var(--off-white); }
+  .faq{ padding: var(--espaco-secao) 0; background: var(--off-white); }
   .faq-lista{
     max-width: 800px;
     margin: 0 auto;
@@ -790,10 +928,9 @@
     font-style: italic;
   }
  
-  @media (max-width: 940px){ .faq{ padding: 90px 0; } }
  
   /* ===================== DEPOIMENTOS ===================== */
-  .depoimentos{ padding: 120px 0; }
+  .depoimentos{ padding: var(--espaco-secao) 0; }
   .grid-depoimentos{
     display:grid;
     grid-template-columns: repeat(3, 1fr);
@@ -802,15 +939,22 @@
   .card-depoimento{
     background: var(--off-white);
     border: 1px solid var(--borda);
-    border-radius: 4px;
+    border-radius: var(--raio-md);
     padding: 36px 32px;
     position: relative;
+    transition: box-shadow .3s ease, transform .3s ease, border-color .3s ease;
+  }
+  .card-depoimento:hover{
+    box-shadow: var(--sombra-card);
+    border-color: rgba(44,74,148,0.35);
+    transform: translateY(-3px);
   }
   .card-depoimento .aspas{
     color: var(--dourado);
-    font-size: 1.6rem;
+    font-size: 2.4rem;
+    line-height: 1;
     font-family: var(--serif);
-    margin-bottom: 14px;
+    margin-bottom: 10px;
     display:block;
   }
   .card-depoimento p{
@@ -845,7 +989,6 @@
   }
  
   @media (max-width: 940px){
-    .depoimentos{ padding: 90px 0; }
     .grid-depoimentos{ grid-template-columns: 1fr; }
   }
  
@@ -873,7 +1016,7 @@
   }
  
   /* ===================== CONTATO ===================== */
-  .contato{ padding: 120px 0; background: var(--off-white); }
+  .contato{ padding: var(--espaco-secao) 0; background: var(--off-white); }
   .contato-grid{
     display:grid;
     grid-template-columns: 0.85fr 1.15fr;
@@ -886,7 +1029,7 @@
   }
   .contato-info .item-contato i{
     width: 46px; height:46px;
-    border-radius: 3px;
+    border-radius: var(--raio-sm);
     background: var(--azul-marinho);
     color: var(--dourado-claro);
     display:flex; align-items:center; justify-content:center;
@@ -907,7 +1050,7 @@
   }
   .mapa-espaco{
     margin-top: 10px;
-    border-radius: 4px;
+    border-radius: var(--raio-sm);
     overflow: hidden;
     border: 1px solid var(--borda);
     height: 240px;
@@ -915,9 +1058,9 @@
   .mapa-espaco iframe{ width:100%; height:100%; border:0; }
  
   .form-card{
-    background: var(--branco);
+    background: var(--bege);
     border: 1px solid var(--borda);
-    border-radius: 4px;
+    border-radius: var(--raio-sm);
     padding: 44px;
     box-shadow: var(--sombra-suave);
   }
@@ -938,7 +1081,7 @@
     width: 100%;
     padding: 13px 16px;
     border: 1px solid var(--neutro-300);
-    border-radius: 3px;
+    border-radius: var(--raio-sm);
     font-family: var(--sans);
     font-size: 0.95rem;
     color: var(--texto-principal);
@@ -949,7 +1092,7 @@
     outline: none;
     border-color: var(--dourado);
     box-shadow: 0 0 0 3px rgba(44,74,148,0.15);
-    background: var(--branco);
+    background: var(--bege);
   }
   .campo textarea{ resize: vertical; min-height: 120px; }
   .campo .erro{
@@ -965,7 +1108,7 @@
     display:none;
     margin-top: 18px;
     padding: 14px 18px;
-    border-radius: 3px;
+    border-radius: var(--raio-sm);
     font-size: 0.9rem;
     background: rgba(31,122,77,0.1);
     color: #1f7a4d;
@@ -974,7 +1117,6 @@
   .form-mensagem-status.mostrar{ display:block; }
  
   @media (max-width: 940px){
-    .contato{ padding: 90px 0; }
     .contato-grid{ grid-template-columns: 1fr; gap: 44px; }
     .form-linha{ grid-template-columns: 1fr; gap:0; }
     .form-card{ padding: 30px; }
@@ -1041,6 +1183,15 @@
     gap: 12px;
     font-size: 0.82rem;
   }
+  .footer-baixo .link-credito{
+    color: var(--dourado-claro);
+    border-bottom: 1px solid transparent;
+    transition: border-color .25s ease, color .25s ease;
+  }
+  .footer-baixo .link-credito:hover{
+    color: var(--branco);
+    border-bottom-color: currentColor;
+  }
  
   @media (max-width: 940px){
     .footer-grid{ grid-template-columns: 1fr 1fr; gap: 36px; }
@@ -1063,7 +1214,23 @@
     z-index: 500;
     transition: transform .25s ease;
   }
+  .flutuante-whatsapp::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(31,122,77,0.45);
+    animation: pulso-whats 2.8s ease-out infinite;
+  }
   .flutuante-whatsapp:hover{ transform: scale(1.08); }
+  @keyframes pulso-whats{
+    0%{ box-shadow: 0 0 0 0 rgba(31,122,77,0.45); }
+    70%{ box-shadow: 0 0 0 14px rgba(31,122,77,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(31,122,77,0); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .flutuante-whatsapp::before{ animation: none; }
+  }
  
   .voltar-topo{
     position: fixed;
@@ -1128,10 +1295,21 @@
      HERO
      ========================================================= -->
 <section class="hero">
+  <div class="hero-brilho"></div>
+  <svg class="hero-padrao" viewBox="0 0 220 220" aria-hidden="true" focusable="false">
+    <g fill="none" stroke="rgba(143,173,232,0.55)" stroke-width="1.4">
+      <rect x="22" y="22" width="40" height="40" transform="rotate(45 42 42)"/>
+      <rect x="70" y="70" width="40" height="40" transform="rotate(45 90 90)"/>
+      <rect x="0" y="96" width="40" height="40" transform="rotate(45 20 116)"/>
+      <rect x="96" y="0" width="40" height="40" transform="rotate(45 116 20)"/>
+      <rect x="46" y="46" width="40" height="40" transform="rotate(45 66 66)" stroke="var(--dourado-claro)" stroke-width="1.6"/>
+    </g>
+  </svg>
   <div class="container hero-grid">
     <div class="hero-texto reveal">
       <span class="eyebrow">Consultoria e assessoria jurídica</span>
       <h1>A defesa dos seus direitos começa com <em>quem entende do assunto</em></h1>
+      <span class="linha-mini linha-mini-hero" aria-hidden="true"></span>
       <p>
         <!-- EDITAR: texto de apresentação -->
         Atuação jurídica pautada em ética, técnica e proximidade com o cliente. Cada caso é analisado
@@ -1144,6 +1322,8 @@
     </div>
  
     <div class="hero-imagem reveal">
+      <div class="hero-bloco" aria-hidden="true"></div>
+      <div class="hero-bloco-2" aria-hidden="true"></div>
       <div class="moldura">
         <img
           src="capa_3.jpg"
@@ -1169,6 +1349,7 @@
     <div class="section-head centro reveal">
       <span class="eyebrow">Nossa equipe</span>
       <h2>Conheça nossas profissionais</h2>
+      <span class="linha-mini" aria-hidden="true"></span>
       <p>Atendimento jurídico personalizado, com experiência, ética e compromisso.</p>
     </div>
 
@@ -1176,7 +1357,6 @@
 
       <!-- =====================================================
            ADVOGADA 1 — GIOVANNA GOMES
-           Os dados abaixo já estão preenchidos.
            ===================================================== -->
       <article class="profissional-card reveal">
         <div class="profissional-foto">
@@ -1197,8 +1377,7 @@
       </article>
 
       <!-- =====================================================
-           ADVOGADA 2 — PREENCHA AQUI
-           Troque apenas os textos e o nome da imagem.
+           ADVOGADA 2 — Natália Cortez
            ===================================================== -->
       <article class="profissional-card profissional-2 reveal">
         <div class="profissional-foto">
@@ -1208,15 +1387,10 @@
         </div>
         <div class="profissional-info">
           <span class="eyebrow">Advogada</span>
-          <!-- EDITAR: nome -->
           <h2>Dra. Natália Cortez</h2>
-          <!-- EDITAR: especialidades -->
-          <!-- EDITAR: biografia -->
           <p>Formada em Direito pelo Centro Universitário de Brasília, venho construindo minha trajetória profissional auxiliando pessoas e empresas na busca por soluções jurídicas seguras e adequadas às suas necessidades. Meu trabalho é baseado na compreensão individual de cada situação, buscando sempre oferecer um atendimento atento e responsável.</p>
-          <!-- EDITAR: segundo parágrafo -->
           <p>Minha atuação tem como pilares a ética, o comprometimento e a transparência. Busco tornar as questões jurídicas mais claras e acessíveis, proporcionando ao cliente segurança para compreender suas opções e tomar decisões de forma consciente.</p>
           <ul class="sobre-lista">
-            <!-- EDITAR: informações -->
             <li><i class="fa-solid fa-graduation-cap"></i> Graduação em Direito</li>
             <li><i class="fa-solid fa-certificate"></i> Pós-graduação em Direito de Família e Sucessões e em Direito Tributário</li>
             <li><i class="fa-solid fa-building-columns"></i> OAB/DF 84.602</li>
@@ -1237,6 +1411,7 @@
     <div class="section-head centro reveal">
       <span class="eyebrow">Áreas de atuação</span>
       <h2>Especialidades jurídicas</h2>
+      <span class="linha-mini" aria-hidden="true"></span>
       <p>Consultoria e assessoria jurídica.</p>
     </div>
 
@@ -1270,6 +1445,7 @@
     <div class="section-head reveal">
       <span class="eyebrow">Como funciona</span>
       <h2>Um processo claro, do primeiro contato à solução</h2>
+      <span class="linha-mini" aria-hidden="true"></span>
     </div>
  
     <div class="etapas">
@@ -1305,6 +1481,7 @@
     <div class="section-head centro reveal">
       <span class="eyebrow">Diferenciais</span>
       <h2>Por que escolher este escritório</h2>
+      <span class="linha-mini" aria-hidden="true"></span>
       <p>Um trabalho jurídico construído sobre confiança, clareza e comprometimento genuíno.</p>
     </div>
   </div>
@@ -1353,6 +1530,7 @@
     <div class="section-head centro reveal">
       <span class="eyebrow">Dúvidas comuns</span>
       <h2>Perguntas frequentes sobre o atendimento jurídico</h2>
+      <span class="linha-mini" aria-hidden="true"></span>
     </div>
  
     <div class="faq-lista reveal">
@@ -1408,6 +1586,7 @@
     <div class="section-head centro reveal">
       <span class="eyebrow">Depoimentos</span>
       <h2>O que dizem os clientes</h2>
+      <span class="linha-mini" aria-hidden="true"></span>
     </div>
  
     <div class="grid-depoimentos">
@@ -1532,10 +1711,10 @@
             <span class="erro">Escreva uma breve mensagem.</span>
           </div>
  
-          <button type="submit" class="btn btn-dourado" style="width:100%;">Enviar mensagem</button>
+          <button type="submit" class="btn btn-dourado" style="width:100%;">Enviar mensagem pelo WhatsApp</button>
  
           <div class="form-mensagem-status" id="statusFormulario">
-            Mensagem enviada com sucesso. Entraremos em contato em breve.
+            Abrindo o WhatsApp com sua mensagem pronta...
           </div>
         </form>
       </div>
@@ -1550,7 +1729,6 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-marca">
-        <!-- EDITAR: nome do escritório -->
         <div class="nome">Gomes & Cortez Advocacia</div>
         <p>Atuação jurídica pautada em ética, técnica e proximidade com o cliente, buscando sempre a
         melhor solução para o seu caso.</p>
@@ -1581,7 +1759,6 @@
       <div class="footer-col">
         <h4>Contato</h4>
         <ul>
-          <!-- EDITAR: repetir dados de contato -->
           <li><a href="#contato">+55 (61) 99610-6388</a></li>
           <li><a href="#contato">adv.gomescortez@gmail.com</a></li>
         </ul>
@@ -1590,7 +1767,7 @@
  
     <div class="footer-baixo">
       <span>&copy; <span id="anoAtual"></span> Gomes & Cortez Advocacia. Todos os direitos reservados.</span>
-      <!-- EDITAR: número da OAB -->
+      <span>Site desenvolvido por <a href="https://gomessites.com.br" target="_blank" rel="noopener" class="link-credito">gomessites.com.br</a></span>
     </div>
   </div>
 </footer>
@@ -1605,11 +1782,8 @@
 <script>
 (function(){
  
-  /* =========================================================
-     CONFIGURAÇÃO RÁPIDA — EDITE AQUI
-     ========================================================= */
-  // Número do WhatsApp no formato internacional, apenas números (com DDI 55 + DDD + número)
-  const whatsappNumero = "5561996106388"; // EDITAR: número real do WhatsApp
+  
+  const whatsappNumero = "5561996106388"; 
   const whatsappMensagem = "Olá! Gostaria de agendar um atendimento.";
  
   const linkWhats = "https://wa.me/" + whatsappNumero + "?text=" + encodeURIComponent(whatsappMensagem);
@@ -1617,12 +1791,10 @@
     el.setAttribute("href", linkWhats);
   });
  
-  /* Ano atual no rodapé */
+  
   document.getElementById("anoAtual").textContent = new Date().getFullYear();
  
-  /* =========================================================
-     HEADER: sombra ao rolar + menu mobile
-     ========================================================= */
+ 
   const header = document.getElementById("header");
   window.addEventListener("scroll", function(){
     if(window.scrollY > 20){
@@ -1767,51 +1939,39 @@
     const textoOriginal = botao.textContent;
 
     botao.disabled = true;
-    botao.textContent = "Enviando...";
-
-    const dados = new FormData();
-    dados.append("nome", nome);
-    dados.append("telefone", telefone);
-    dados.append("email", email);
-    dados.append("mensagem", mensagem);
+    botao.textContent = "Abrindo o WhatsApp...";
 
     /* =========================================================
-       FORMSPREE
-       Troque a URL abaixo pela URL fornecida pelo Formspree.
-       Exemplo:
-       https://formspree.io/f/abcd1234
+       ENVIO VIA WHATSAPP
+       Em vez de enviar o formulário por e-mail (Formspree), montamos
+       uma mensagem pronta com os dados preenchidos e abrimos o
+       WhatsApp (app no celular, WhatsApp Web no computador) já com
+       o texto no campo — a pessoa só confirma o envio.
+       Reaproveita o mesmo número usado no botão flutuante.
        ========================================================= */
-    const FORMSPREE_URL = "https://formspree.io/f/xrpgjqwv";
-
     try {
-      const resposta = await fetch(FORMSPREE_URL, {
-        method: "POST",
-        body: dados,
-        headers: {
-          Accept: "application/json"
-        }
-      });
+      const textoWhats =
+        "Olá! Meu nome é " + nome + "." +
+        "\nTelefone: " + telefone +
+        "\nE-mail: " + email +
+        "\nMensagem: " + mensagem;
 
-      if (resposta.ok) {
-        statusFormulario.textContent =
-          "Mensagem enviada com sucesso. Entraremos em contato em breve.";
-        statusFormulario.classList.add("mostrar");
-        form.reset();
-      } else {
-        statusFormulario.textContent =
-          "Não foi possível enviar a mensagem. Tente novamente.";
-        statusFormulario.style.background = "rgba(178,59,59,0.1)";
-        statusFormulario.style.color = "#b23b3b";
-        statusFormulario.style.borderColor = "rgba(178,59,59,0.25)";
-        statusFormulario.classList.add("mostrar");
-      }
+      const linkFormWhats =
+        "https://wa.me/" + whatsappNumero + "?text=" + encodeURIComponent(textoWhats);
+
+      statusFormulario.textContent =
+        "Abrindo o WhatsApp com sua mensagem pronta. É só confirmar o envio por lá.";
+      statusFormulario.classList.add("mostrar");
+
+      window.open(linkFormWhats, "_blank", "noopener");
+      form.reset();
     } catch (erro) {
       statusFormulario.textContent =
-        "Erro de conexão. Verifique sua internet e tente novamente.";
-        statusFormulario.style.background = "rgba(178,59,59,0.1)";
-        statusFormulario.style.color = "#b23b3b";
-        statusFormulario.style.borderColor = "rgba(178,59,59,0.25)";
-        statusFormulario.classList.add("mostrar");
+        "Não foi possível abrir o WhatsApp. Tente novamente.";
+      statusFormulario.style.background = "rgba(178,59,59,0.1)";
+      statusFormulario.style.color = "#b23b3b";
+      statusFormulario.style.borderColor = "rgba(178,59,59,0.25)";
+      statusFormulario.classList.add("mostrar");
     } finally {
       botao.disabled = false;
       botao.textContent = textoOriginal;
