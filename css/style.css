@@ -278,6 +278,17 @@ nav.menu-principal a::after{
 nav.menu-principal a:hover{ color: var(--azul-marinho); }
 nav.menu-principal a:hover::after{ width:100%; }
 
+/* Notebooks e tablets em paisagem: menu mais compacto para caber em uma linha */
+@media (min-width: 941px) and (max-width: 1200px){
+  nav.menu-principal{ gap: 22px; }
+  nav.menu-principal a{ font-size: 0.9rem; }
+  .header-inner, header.scrolled .header-inner{ padding-left: 24px; padding-right: 24px; }
+}
+@media (min-width: 941px) and (max-width: 1040px){
+  nav.menu-principal{ gap: 16px; }
+  .header-actions .btn{ padding: 14px 22px; }
+}
+
 .header-actions{ display:flex; align-items:center; gap: 22px; }
 
 .btn-menu-mobile{
@@ -466,7 +477,6 @@ nav.menu-principal a:hover::after{ width:100%; }
   .hero-texto h1{ max-width: 100%; }
   .hero-texto p{ max-width: 100%; margin-left:auto; margin-right:auto; }
   .hero-botoes{ justify-content:center; }
-  .hero-imagem{ order:-1; }
   .hero-imagem img{ height: 380px; }
   .hero-imagem .selo{ left: 50%; transform: translateX(-50%); bottom: -22px; padding: 16px 18px; }
 }
@@ -1091,6 +1101,7 @@ nav.menu-principal a:hover::after{ width:100%; }
   border: 1px solid rgba(31,122,77,0.25);
 }
 .form-mensagem-status.mostrar{ display:block; }
+.form-mensagem-status a{ text-decoration: underline; font-weight: 600; }
 
 @media (max-width: 940px){
   .contato-grid{ grid-template-columns: 1fr; gap: 44px; }

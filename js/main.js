@@ -128,7 +128,7 @@
     }
   }
 
-  form.addEventListener("submit", async function(e){
+  form.addEventListener("submit", function(e){
     e.preventDefault();
 
     statusFormulario.classList.remove("mostrar");
@@ -172,42 +172,61 @@
       return;
     }
 
-    const botao = form.querySelector("button[type='submit']");
-    const textoOriginal = botao.textContent;
-
-    botao.disabled = true;
-    botao.textContent = "Abrindo o WhatsApp...";
-
     /* =========================================================
        ENVIO VIA WHATSAPP
        ========================================================= */
-    try {
-      const textoWhats =
-        "Olá! Meu nome é " + nome + "." +
-        "\nTelefone: " + telefone +
-        "\nE-mail: " + email +
-        "\nMensagem: " + mensagem;
+    const textoWhats =
+      "Olá! Meu nome é " + nome + "." +
+      "\nTelefone: " + telefone +
+      "\nE-mail: " + email +
+      "\nMensagem: " + mensagem;
 
-      const linkFormWhats =
-        "https://wa.me/" + whatsappNumero + "?text=" + encodeURIComponent(textoWhats);
+    const linkFormWhats =
+      "https://wa.me/" + whatsappNumero + "?text=" + encodeURIComponent(textoWhats);
 
+    // Sem "noopener" nas opções: com ele, window.open sempre retorna null e
+    // não daria para saber se o pop-up foi bloqueado. O opener é anulado abaixo.
+    const janela = window.open(linkFormWhats, "_blank");
+
+    if (janela) {
+      janela.opener = null;
       statusFormulario.textContent =
         "Abrindo o WhatsApp com sua mensagem pronta. É só confirmar o envio por lá.";
       statusFormulario.classList.add("mostrar");
-
-      window.open(linkFormWhats, "_blank", "noopener");
+      registrarEvento("envio_formulario_whatsapp");
       form.reset();
-    } catch (erro) {
-      statusFormulario.textContent =
-        "Não foi possível abrir o WhatsApp. Tente novamente.";
+    } else {
+      // Pop-up bloqueado: mantém o que foi digitado e oferece um link direto
+      statusFormulario.textContent = "O navegador bloqueou a abertura automática. ";
+      const linkManual = document.createElement("a");
+      linkManual.href = linkFormWhats;
+      linkManual.target = "_blank";
+      linkManual.rel = "noopener";
+      linkManual.textContent = "Clique aqui para abrir o WhatsApp com sua mensagem.";
+      statusFormulario.appendChild(linkManual);
       statusFormulario.style.background = "rgba(178,59,59,0.1)";
       statusFormulario.style.color = "#b23b3b";
       statusFormulario.style.borderColor = "rgba(178,59,59,0.25)";
       statusFormulario.classList.add("mostrar");
-    } finally {
-      botao.disabled = false;
-      botao.textContent = textoOriginal;
     }
+  });
+
+  /* =========================================================
+     EVENTOS NO GOOGLE ANALYTICS (conversões)
+     ========================================================= */
+  function registrarEvento(nome, parametros){
+    if (typeof window.gtag === "function") {
+      window.gtag("event", nome, parametros || {});
+    }
+  }
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function(link){
+    link.addEventListener("click", function(){
+      const secao = link.closest("section, footer");
+      registrarEvento("clique_whatsapp", {
+        local: link.classList.contains("flutuante-whatsapp") ? "botao_flutuante"
+             : secao ? (secao.id || secao.className.split(" ")[0] || secao.tagName.toLowerCase()) : "pagina"
+      });
+    });
   });
 
 })();
