@@ -24,7 +24,7 @@
       header.classList.remove("scrolled");
     }
     toggleVoltarTopo();
-  });
+  }, { passive: true });
 
   const menu = document.getElementById("menuPrincipal");
   const btnMenu = document.getElementById("btnMenuMobile");

@@ -64,12 +64,13 @@
      - Cores: variáveis no início de css/style.css (:root).
      - Link do WhatsApp: variável "whatsappNumero" em js/main.js
        (os links "wa.me" do rodapé e da seção Contato usam o mesmo número).
-     - Imagens: arquivos .jpg na mesma pasta deste HTML.
+     - Imagens: pasta img/ (cada foto tem versão .jpg e .webp; troque as duas).
      ========================================================= -->
  
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
  
 <link rel="stylesheet" href="css/style.css">
@@ -142,9 +143,11 @@
       <div class="hero-bloco" aria-hidden="true"></div>
       <div class="hero-bloco-2" aria-hidden="true"></div>
       <div class="moldura">
-        <img
-          src="capa_3.jpg"
-          alt="Martelo da justiça sobre livros jurídicos em uma mesa de madeira">
+        <picture>
+          <source srcset="img/capa.webp" type="image/webp">
+          <img src="img/capa.jpg" width="612" height="408" fetchpriority="high"
+            alt="Martelo da justiça sobre livros jurídicos em uma mesa de madeira">
+        </picture>
       </div>
     </div>
   </div>
@@ -176,7 +179,10 @@
            ===================================================== -->
       <article class="profissional-card reveal">
         <div class="profissional-foto">
-          <img src="giovanna_prof2.jpg" alt="Dra. Giovanna Gomes, advogada">
+          <picture>
+            <source srcset="img/giovanna-gomes.webp" type="image/webp">
+            <img src="img/giovanna-gomes.jpg" width="1151" height="1600" loading="lazy" decoding="async" alt="Dra. Giovanna Gomes, advogada">
+          </picture>
         </div>
         <div class="profissional-info">
           <span class="eyebrow">Advogada</span>
@@ -197,7 +203,10 @@
            ===================================================== -->
       <article class="profissional-card profissional-2 reveal">
         <div class="profissional-foto">
-          <img src="nat_profi1.jpg" alt="Dra. Natália Cortez, advogada">
+          <picture>
+            <source srcset="img/natalia-cortez.webp" type="image/webp">
+            <img src="img/natalia-cortez.jpg" width="1045" height="1577" loading="lazy" decoding="async" alt="Dra. Natália Cortez, advogada">
+          </picture>
         </div>
         <div class="profissional-info">
           <span class="eyebrow">Advogada</span>
