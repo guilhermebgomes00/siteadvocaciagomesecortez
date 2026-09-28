@@ -42,17 +42,21 @@
     --azul-marinho-2: #6E5A47;
     --azul-profundo: #3C2F25;
     --dourado: #A6875A;
-    --dourado-claro: #D2B98C;
+    --dourado-claro: #D8C299;
+    /* Dourado mais fechado para textos pequenos sobre fundo claro (contraste AA) */
+    --dourado-texto: #7D6139;
+    /* Tom final do gradiente dos botões dourados (texto escuro, contraste AA) */
+    --dourado-botao: #BFA071;
     --branco: #ffffff;
     --bege: #FAF6EC;
     --off-white: #F2ECDD;
     /* Neutros em tons quentes, alinhados à paleta marrom/dourado */
     --neutro-100: #F1ECE2;
     --neutro-300: #DDD3C2;
-    --neutro-500: #8A7C6B;
+    --neutro-500: #74685A;
     --neutro-700: #574B3F;
     --texto-principal: #2A2119;
-    --texto-suave: #7A6E60;
+    --texto-suave: #6E6254;
     --borda: rgba(90,74,59,0.14);
     --sombra: 0 24px 60px -28px rgba(60,47,37,0.32);
     --sombra-suave: 0 10px 30px -18px rgba(60,47,37,0.20);
@@ -91,7 +95,17 @@
   a{ text-decoration:none; color:inherit; }
  
   ul{ list-style:none; }
- 
+
+  /* Foco visível para navegação por teclado (dourado-claro nos fundos escuros) */
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--dourado);
+    outline-offset: 3px;
+  }
+  .hero a:focus-visible, .cta a:focus-visible, footer a:focus-visible,
+  .flutuante-whatsapp:focus-visible, .voltar-topo:focus-visible{
+    outline-color: var(--dourado-claro);
+  }
+
   .container{
     width:100%;
     max-width: 1200px;
@@ -117,7 +131,7 @@
   section{ position: relative; }
  
   .eyebrow{
-    color: var(--dourado);
+    color: var(--dourado-texto);
     font-family: var(--serif);
     font-style: italic;
     font-size: 1.05rem;
@@ -181,8 +195,8 @@
     outline-offset: 3px;
   }
   .btn-dourado{
-    background: linear-gradient(135deg, var(--dourado-claro), var(--dourado));
-    color: var(--branco);
+    background: linear-gradient(135deg, var(--dourado-claro), var(--dourado-botao));
+    color: var(--azul-profundo);
     box-shadow: 0 10px 24px -14px rgba(166,135,90,0.6);
   }
   .btn-dourado:hover{
@@ -264,7 +278,7 @@
   .logo .sub{
     font-size: 0.68rem;
     letter-spacing: 1.5px;
-    color: var(--dourado);
+    color: var(--dourado-texto);
     margin-top: 2px;
     font-weight: 600;
   }
@@ -315,9 +329,12 @@
       gap: 30px;
       padding: 40px;
       transform: translateX(100%);
-      transition: transform .35s ease;
+      /* visibility impede que os links do menu fechado recebam foco pelo Tab */
+      visibility: hidden;
+      transition: transform .35s ease, visibility .35s;
     }
-    nav.menu-principal.aberto{ transform: translateX(0); }
+    nav.menu-principal.aberto{ transform: translateX(0); visibility: visible; }
+    nav.menu-principal a:focus-visible{ outline-color: var(--dourado-claro); }
     nav.menu-principal a{ color: var(--neutro-100); font-size: 1.1rem; }
     nav.menu-principal a:hover{ color: var(--dourado-claro); }
     .header-actions .btn-marinho{ display:none; }
@@ -885,8 +902,11 @@
   .faq-resposta{
     max-height: 0;
     overflow: hidden;
-    transition: max-height .35s ease;
+    /* visibility esconde a resposta fechada também de leitores de tela */
+    visibility: hidden;
+    transition: max-height .35s ease, visibility .35s;
   }
+  .faq-item.aberto .faq-resposta{ visibility: visible; }
   .faq-resposta p{
     color: var(--texto-suave);
     padding: 0 4px 26px;
@@ -1263,8 +1283,8 @@
  
     <div class="header-actions">
       <a href="#contato" class="btn btn-marinho">Fale Conosco</a>
-      <button class="btn-menu-mobile" id="btnMenuMobile" aria-label="Abrir menu">
-        <i class="fa-solid fa-bars"></i>
+      <button class="btn-menu-mobile" id="btnMenuMobile" aria-label="Abrir menu" aria-expanded="false" aria-controls="menuPrincipal">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
       </button>
     </div>
   </div>
@@ -1314,9 +1334,9 @@
  
 <div class="faixa-confianca">
   <div class="container">
-    <span><i class="fa-solid fa-shield-halved"></i> Sigilo e confidencialidade</span>
-    <span><i class="fa-solid fa-handshake"></i> Atendimento personalizado</span>
-    <span><i class="fa-solid fa-comments"></i> Comunicação clara e direta</span>
+    <span><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Sigilo e confidencialidade</span>
+    <span><i class="fa-solid fa-handshake" aria-hidden="true"></i> Atendimento personalizado</span>
+    <span><i class="fa-solid fa-comments" aria-hidden="true"></i> Comunicação clara e direta</span>
   </div>
 </div>
  
@@ -1346,10 +1366,10 @@
           <p>Formada em Direito pelo Centro Universitário de Brasília, atuo auxiliando pessoas físicas e empresas a resolverem questões jurídicas com segurança e clareza. Acredito que um bom trabalho jurídico começa na escuta atenta de cada cliente.</p>
           <p>Minha atuação é pautada por três valores centrais: ética profissional, transparência em cada etapa do processo e comunicação acessível, sem o "juridiquês" que afasta as pessoas do seu próprio caso.</p>
           <ul class="sobre-lista">
-            <li><i class="fa-solid fa-graduation-cap"></i> Graduação em Direito</li>
-            <li><i class="fa-solid fa-certificate"></i> Pós-graduação em Direito de Família e Sucessões e em Direito Tributário</li>
-            <li><i class="fa-solid fa-building-columns"></i> OAB/DF 86.132</li>
-            <li><i class="fa-solid fa-laptop"></i> Atendimento online e presencial</li>
+            <li><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Graduação em Direito</li>
+            <li><i class="fa-solid fa-certificate" aria-hidden="true"></i> Pós-graduação em Direito de Família e Sucessões e em Direito Tributário</li>
+            <li><i class="fa-solid fa-building-columns" aria-hidden="true"></i> OAB/DF 86.132</li>
+            <li><i class="fa-solid fa-laptop" aria-hidden="true"></i> Atendimento online e presencial</li>
           </ul>
         </div>
       </article>
@@ -1367,10 +1387,10 @@
           <p>Formada em Direito pelo Centro Universitário de Brasília, venho construindo minha trajetória profissional auxiliando pessoas e empresas na busca por soluções jurídicas seguras e adequadas às suas necessidades. Meu trabalho é baseado na compreensão individual de cada situação, buscando sempre oferecer um atendimento atento e responsável.</p>
           <p>Minha atuação tem como pilares a ética, o comprometimento e a transparência. Busco tornar as questões jurídicas mais claras e acessíveis, proporcionando ao cliente segurança para compreender suas opções e tomar decisões de forma consciente.</p>
           <ul class="sobre-lista">
-            <li><i class="fa-solid fa-graduation-cap"></i> Graduação em Direito</li>
-            <li><i class="fa-solid fa-certificate"></i> Pós-graduação em Direito de Família e Sucessões e em Direito Tributário</li>
-            <li><i class="fa-solid fa-building-columns"></i> OAB/DF 84.602</li>
-            <li><i class="fa-solid fa-laptop"></i> Atendimento online e presencial</li>
+            <li><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Graduação em Direito</li>
+            <li><i class="fa-solid fa-certificate" aria-hidden="true"></i> Pós-graduação em Direito de Família e Sucessões e em Direito Tributário</li>
+            <li><i class="fa-solid fa-building-columns" aria-hidden="true"></i> OAB/DF 84.602</li>
+            <li><i class="fa-solid fa-laptop" aria-hidden="true"></i> Atendimento online e presencial</li>
           </ul>
         </div>
       </article>
@@ -1392,19 +1412,19 @@
 
     <div class="grid-areas">
       <div class="card-area reveal">
-        <div class="icone"><i class="fa-solid fa-scale-balanced"></i></div>
+        <div class="icone"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></div>
         <h3>Direito Tributário</h3>
         <p>Consultoria e assessoria jurídica na área tributária.</p>
       </div>
 
       <div class="card-area reveal">
-        <div class="icone"><i class="fa-solid fa-landmark"></i></div>
+        <div class="icone"><i class="fa-solid fa-landmark" aria-hidden="true"></i></div>
         <h3>Direito das Sucessões</h3>
         <p>Consultoria e assessoria jurídica na área de sucessões.</p>
       </div>
 
       <div class="card-area reveal">
-        <div class="icone"><i class="fa-solid fa-people-roof"></i></div>
+        <div class="icone"><i class="fa-solid fa-people-roof" aria-hidden="true"></i></div>
         <h3>Direito de Família</h3>
         <p>Consultoria e assessoria jurídica na área de família.</p>
       </div>
@@ -1462,32 +1482,32 @@
   <div class="container">
     <div class="grid-diferenciais reveal">
       <div class="item-diferencial">
-        <i class="fa-solid fa-user-check"></i>
+        <i class="fa-solid fa-user-check" aria-hidden="true"></i>
         <h3>Atendimento personalizado</h3>
         <p>Cada cliente é ouvido individualmente, e atendido de acordo com suas demandas.</p>
       </div>
       <div class="item-diferencial">
-        <i class="fa-solid fa-eye"></i>
+        <i class="fa-solid fa-eye" aria-hidden="true"></i>
         <h3>Transparência</h3>
         <p>Informações claras sobre prazos, custos e andamento do processo.</p>
       </div>
       <div class="item-diferencial">
-        <i class="fa-solid fa-comment-dots"></i>
+        <i class="fa-solid fa-comment-dots" aria-hidden="true"></i>
         <h3>Comunicação clara</h3>
         <p>Explicações em linguagem acessível, sem termos técnicos desnecessários.</p>
       </div>
       <div class="item-diferencial">
-        <i class="fa-solid fa-chess"></i>
+        <i class="fa-solid fa-chess" aria-hidden="true"></i>
         <h3>Estratégia jurídica</h3>
         <p>Planejamento cuidadoso para cada etapa do caso.</p>
       </div>
       <div class="item-diferencial">
-        <i class="fa-solid fa-heart"></i>
+        <i class="fa-solid fa-heart" aria-hidden="true"></i>
         <h3>Compromisso com o cliente</h3>
         <p>Dedicação integral aos interesses de quem confia neste trabalho.</p>
       </div>
       <div class="item-diferencial">
-        <i class="fa-solid fa-lock"></i>
+        <i class="fa-solid fa-lock" aria-hidden="true"></i>
         <h3>Sigilo profissional</h3>
         <p>Confidencialidade absoluta sobre todas as informações compartilhadas.</p>
       </div>
@@ -1507,41 +1527,41 @@
  
     <div class="faq-lista reveal">
       <div class="faq-item">
-        <button class="faq-pergunta">
+        <button class="faq-pergunta" id="faq-pergunta-1" aria-expanded="false" aria-controls="faq-resposta-1">
           Como funciona a primeira consulta?
-          <i class="fa-solid fa-plus"></i>
+          <i class="fa-solid fa-plus" aria-hidden="true"></i>
         </button>
-        <div class="faq-resposta">
+        <div class="faq-resposta" id="faq-resposta-1" role="region" aria-labelledby="faq-pergunta-1">
           <p>Na primeira conversa, você apresenta o seu caso e recebe orientações gerais sobre os
           caminhos jurídicos possíveis, sem compromisso.</p>
         </div>
       </div>
       <div class="faq-item">
-        <button class="faq-pergunta">
+        <button class="faq-pergunta" id="faq-pergunta-2" aria-expanded="false" aria-controls="faq-resposta-2">
           Quais documentos são necessários?
-          <i class="fa-solid fa-plus"></i>
+          <i class="fa-solid fa-plus" aria-hidden="true"></i>
         </button>
-        <div class="faq-resposta">
+        <div class="faq-resposta" id="faq-resposta-2" role="region" aria-labelledby="faq-pergunta-2">
           <p>A lista varia conforme o tipo de caso. Após o primeiro contato, você recebe uma orientação
           específica sobre a documentação necessária.</p>
         </div>
       </div>
       <div class="faq-item">
-        <button class="faq-pergunta">
+        <button class="faq-pergunta" id="faq-pergunta-3" aria-expanded="false" aria-controls="faq-resposta-3">
           Quanto tempo dura um processo judicial?
-          <i class="fa-solid fa-plus"></i>
+          <i class="fa-solid fa-plus" aria-hidden="true"></i>
         </button>
-        <div class="faq-resposta">
+        <div class="faq-resposta" id="faq-resposta-3" role="region" aria-labelledby="faq-pergunta-3">
           <p>O prazo varia de acordo com a complexidade do caso, o volume de trabalho do Judiciário e
           outros fatores. Cada situação é avaliada individualmente.</p>
         </div>
       </div>
       <div class="faq-item">
-        <button class="faq-pergunta">
+        <button class="faq-pergunta" id="faq-pergunta-4" aria-expanded="false" aria-controls="faq-resposta-4">
           O atendimento pode ser feito online?
-          <i class="fa-solid fa-plus"></i>
+          <i class="fa-solid fa-plus" aria-hidden="true"></i>
         </button>
-        <div class="faq-resposta">
+        <div class="faq-resposta" id="faq-resposta-4" role="region" aria-labelledby="faq-pergunta-4">
           <p>Sim, é possível realizar consultas e acompanhamento à distância, conforme a preferência e a
           necessidade do cliente.</p>
         </div>
@@ -1620,7 +1640,7 @@
       <p>Converse agora mesmo e entenda quais são os próximos passos para o seu caso.</p>
     </div>
     <a href="#" class="btn btn-dourado link-whatsapp" target="_blank" rel="noopener">
-      <i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp
+      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Falar no WhatsApp
     </a>
   </div>
 </section>
@@ -1635,7 +1655,7 @@
       <h2 style="margin-bottom: 30px;">Vamos conversar sobre o seu caso</h2>
  
       <div class="item-contato">
-        <i class="fa-brands fa-whatsapp"></i>
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
         <div>
           <div class="rotulo">WhatsApp</div>
           <!-- EDITAR: whatsapp -->
@@ -1643,7 +1663,7 @@
         </div>
       </div>
       <div class="item-contato">
-        <i class="fa-solid fa-envelope"></i>
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
         <div>
           <div class="rotulo">E-mail</div>
           <!-- EDITAR: e-mail -->
@@ -1651,7 +1671,7 @@
         </div>
       </div>
       <div class="item-contato">
-        <i class="fa-solid fa-clock"></i>
+        <i class="fa-solid fa-clock" aria-hidden="true"></i>
         <div>
           <div class="rotulo">Horário de atendimento</div>
           <!-- EDITAR: horário -->
@@ -1669,31 +1689,31 @@
           <div class="form-linha">
             <div class="campo" id="campoNome">
               <label for="nome">Nome completo</label>
-              <input type="text" id="nome" name="nome" placeholder="Seu nome">
-              <span class="erro">Por favor, informe o seu nome.</span>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome" autocomplete="name" required aria-describedby="erroNome">
+              <span class="erro" id="erroNome">Por favor, informe o seu nome.</span>
             </div>
             <div class="campo" id="campoTelefone">
               <label for="telefone">Telefone</label>
-              <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000">
-              <span class="erro">Informe um telefone válido.</span>
+              <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" autocomplete="tel" required aria-describedby="erroTelefone">
+              <span class="erro" id="erroTelefone">Informe um telefone válido.</span>
             </div>
           </div>
  
           <div class="campo" id="campoEmail">
             <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com.br">
-            <span class="erro">Informe um e-mail válido.</span>
+            <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com.br" autocomplete="email" required aria-describedby="erroEmail">
+            <span class="erro" id="erroEmail">Informe um e-mail válido.</span>
           </div>
  
           <div class="campo" id="campoMensagem">
             <label for="mensagem">Mensagem</label>
-            <textarea id="mensagem" name="mensagem" placeholder="Descreva brevemente o seu caso..."></textarea>
-            <span class="erro">Escreva uma breve mensagem.</span>
+            <textarea id="mensagem" name="mensagem" placeholder="Descreva brevemente o seu caso..." required aria-describedby="erroMensagem"></textarea>
+            <span class="erro" id="erroMensagem">Escreva uma breve mensagem.</span>
           </div>
  
           <button type="submit" class="btn btn-dourado" style="width:100%;">Enviar mensagem pelo WhatsApp</button>
  
-          <div class="form-mensagem-status" id="statusFormulario">
+          <div class="form-mensagem-status" id="statusFormulario" role="status" aria-live="polite">
             Abrindo o WhatsApp com sua mensagem pronta...
           </div>
         </form>
@@ -1713,7 +1733,7 @@
         <p>Atuação jurídica pautada em ética, técnica e proximidade com o cliente, buscando sempre a
         melhor solução para o seu caso.</p>
         <div class="footer-social" style="margin-top:20px;">
-          <a href="https://www.instagram.com/adv.gomescortez/?utm_source=ig_web_button_share_sheet" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.instagram.com/adv.gomescortez/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
         </div>
       </div>
  
@@ -1754,10 +1774,10 @@
 </footer>
  
 <a href="#" class="flutuante-whatsapp link-whatsapp" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-  <i class="fa-brands fa-whatsapp"></i>
+  <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
 </a>
 <button class="voltar-topo" id="voltarTopo" aria-label="Voltar ao topo">
-  <i class="fa-solid fa-arrow-up"></i>
+  <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
 </button>
  
 <script>
@@ -1793,12 +1813,16 @@
   function abrirMenu(){
     menu.classList.add("aberto");
     overlay.classList.add("ativo");
-    btnMenu.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+    btnMenu.innerHTML = '<i class="fa-solid fa-xmark" aria-hidden="true"></i>';
+    btnMenu.setAttribute("aria-expanded", "true");
+    btnMenu.setAttribute("aria-label", "Fechar menu");
   }
   function fecharMenu(){
     menu.classList.remove("aberto");
     overlay.classList.remove("ativo");
-    btnMenu.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    btnMenu.innerHTML = '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+    btnMenu.setAttribute("aria-expanded", "false");
+    btnMenu.setAttribute("aria-label", "Abrir menu");
   }
   btnMenu.addEventListener("click", function(){
     menu.classList.contains("aberto") ? fecharMenu() : abrirMenu();
@@ -1806,6 +1830,12 @@
   overlay.addEventListener("click", fecharMenu);
   document.querySelectorAll(".link-menu").forEach(function(a){
     a.addEventListener("click", fecharMenu);
+  });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && menu.classList.contains("aberto")){
+      fecharMenu();
+      btnMenu.focus();
+    }
   });
  
   /* =========================================================
@@ -1819,10 +1849,12 @@
       document.querySelectorAll(".faq-item").forEach(function(outro){
         outro.classList.remove("aberto");
         outro.querySelector(".faq-resposta").style.maxHeight = null;
+        outro.querySelector(".faq-pergunta").setAttribute("aria-expanded", "false");
       });
       if(!estaAberto){
         item.classList.add("aberto");
         resposta.style.maxHeight = resposta.scrollHeight + "px";
+        pergunta.setAttribute("aria-expanded", "true");
       }
     });
   });
@@ -1864,11 +1896,14 @@
  
   function validarCampo(id, condicao){
     const campo = document.getElementById(id);
+    const entrada = campo.querySelector("input, textarea");
     if(condicao){
       campo.classList.remove("invalido");
+      entrada.removeAttribute("aria-invalid");
       return true;
     } else {
       campo.classList.add("invalido");
+      entrada.setAttribute("aria-invalid", "true");
       return false;
     }
   }
@@ -1911,6 +1946,7 @@
           behavior: "smooth",
           block: "center"
         });
+        primeiroInvalido.querySelector("input, textarea").focus({ preventScroll: true });
       }
 
       return;
