@@ -536,9 +536,10 @@ nav.menu-principal a:hover::after{ width:100%; }
 }
 .profissional-foto img {
   width: 100%;
-  height: 430px;
-  object-fit: contain;
-  object-position: center;
+  height: 100%;
+  /* cover preenche o quadro sem faixas laterais; o foco fica no rosto */
+  object-fit: cover;
+  object-position: center 6%;
   display: block;
   background: #111;
 }
@@ -563,6 +564,10 @@ nav.menu-principal a:hover::after{ width:100%; }
   background:var(--azul-marinho);
   color:var(--branco);
   transform:translateY(-2px);
+}
+/* Entre 941px e 1100px os cards ficam estreitos: lista de formação em uma coluna */
+@media (min-width: 941px) and (max-width: 1100px){
+  .profissional-info .sobre-lista{ grid-template-columns: 1fr; }
 }
 @media (max-width: 940px){
   .profissionais-grid{ grid-template-columns:1fr; gap:32px; }
@@ -1092,6 +1097,13 @@ nav.menu-principal a:hover::after{ width:100%; }
   .form-linha{ grid-template-columns: 1fr; gap:0; }
   .form-card{ padding: 30px; }
 }
+/* Colunas podem encolher abaixo do conteúdo mais largo (evita rolagem lateral) */
+.contato-grid > *{ min-width: 0; }
+@media (max-width: 480px){
+  .form-card{ padding: 26px 20px; }
+  /* botões com texto longo quebram linha em telas estreitas */
+  .btn{ white-space: normal; text-align: center; }
+}
 
 /* ===================== FOOTER ===================== */
 footer{
@@ -1225,5 +1237,14 @@ footer{
 
 @media (max-width: 560px){
   .flutuante-whatsapp{ width: 52px; height:52px; right:18px; bottom:18px; font-size:1.3rem; }
-  .voltar-topo{ right:18px; bottom: 82px; width:40px; height:40px; }
+  .voltar-topo{ right:22px; bottom: 82px; width:44px; height:44px; }
+  /* espaço no fim da página para os botões flutuantes não cobrirem o rodapé */
+  footer{ padding-bottom: 92px; }
+}
+
+/* Em telas de toque, o efeito de "elevar" no hover fica preso após o toque */
+@media (hover: none){
+  .btn:hover, .profissional-card:hover, .card-area:hover, .card-depoimento:hover,
+  .flutuante-whatsapp:hover{ transform: none; }
+  .card-area:hover .icone{ transform: none; }
 }
