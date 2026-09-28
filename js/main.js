@@ -3,8 +3,8 @@
    ========================================================= */
 (function(){
 
-  
-  const whatsappNumero = "5561996106388"; 
+
+  const whatsappNumero = "5561996106388";
   const whatsappMensagem = "Olá! Gostaria de agendar um atendimento.";
 
   const linkWhats = "https://wa.me/" + whatsappNumero + "?text=" + encodeURIComponent(whatsappMensagem);
@@ -12,10 +12,10 @@
     el.setAttribute("href", linkWhats);
   });
 
-  
+
   document.getElementById("anoAtual").textContent = new Date().getFullYear();
 
- 
+
   const header = document.getElementById("header");
   window.addEventListener("scroll", function(){
     if(window.scrollY > 20){

@@ -56,29 +56,32 @@
   gtag('js', new Date());
   gtag('config', 'G-8NRYQJC1ME');
 </script>
- 
+
 <!-- =========================================================
      GUIA RÁPIDO DE EDIÇÃO
-     - Nome do escritório, telefone, e-mail e horário:
-       procure por "EDITAR:" nos comentários abaixo.
+     Estrutura: index.html (conteúdo) | css/style.css (visual) |
+                js/main.js (interações) | img/ (imagens e ícones)
+     - Telefone, e-mail e horário: procure por "EDITAR:" neste arquivo.
+       Se mudar o telefone, atualize também os links "wa.me" deste arquivo
+       e os dados estruturados (ld+json) no <head>.
      - Cores: variáveis no início de css/style.css (:root).
-     - Link do WhatsApp: variável "whatsappNumero" em js/main.js
-       (os links "wa.me" do rodapé e da seção Contato usam o mesmo número).
+     - WhatsApp: variável "whatsappNumero" em js/main.js.
      - Imagens: pasta img/ (cada foto tem versão .jpg e .webp; troque as duas).
+     - Domínio: ao publicar, complete as tags comentadas com "EDITAR" no <head>.
      ========================================================= -->
- 
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
- 
+
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
- 
+
 <div id="topo"></div>
- 
+
 <!-- =========================================================
      HEADER
      ========================================================= -->
@@ -89,7 +92,7 @@
       <span class="nome">Gomes &amp; Cortez</span>
       <span class="sub">ADVOCACIA</span>
     </a>
- 
+
     <nav class="menu-principal" id="menuPrincipal">
       <a href="#topo" class="link-menu">Início</a>
       <a href="#sobre" class="link-menu">Sobre</a>
@@ -99,7 +102,7 @@
       <a href="#depoimentos" class="link-menu">Depoimentos</a>
       <a href="#contato" class="link-menu">Contato</a>
     </nav>
- 
+
     <div class="header-actions">
       <a href="#contato" class="btn btn-marinho">Fale Conosco</a>
       <button class="btn-menu-mobile" id="btnMenuMobile" aria-label="Abrir menu" aria-expanded="false" aria-controls="menuPrincipal">
@@ -109,7 +112,7 @@
   </div>
 </header>
 <div class="overlay-menu" id="overlayMenu"></div>
- 
+
 <!-- =========================================================
      HERO
      ========================================================= -->
@@ -138,7 +141,7 @@
         <a href="#sobre" class="btn btn-outline">Conheça as Profissionais</a>
       </div>
     </div>
- 
+
     <div class="hero-imagem reveal">
       <div class="hero-bloco" aria-hidden="true"></div>
       <div class="hero-bloco-2" aria-hidden="true"></div>
@@ -152,7 +155,7 @@
     </div>
   </div>
 </section>
- 
+
 <div class="faixa-confianca">
   <div class="container">
     <span><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Sigilo e confidencialidade</span>
@@ -160,11 +163,11 @@
     <span><i class="fa-solid fa-comments" aria-hidden="true"></i> Comunicação clara e direta</span>
   </div>
 </div>
- 
+
 <!-- =========================================================
      PROFISSIONAIS
      ========================================================= -->
-<section class="sobre" id="sobre">
+<section class="profissionais" id="sobre">
   <div class="container">
     <div class="section-head centro reveal">
       <span class="eyebrow">Nossa equipe</span>
@@ -201,7 +204,7 @@
       <!-- =====================================================
            ADVOGADA 2 — NATÁLIA CORTEZ
            ===================================================== -->
-      <article class="profissional-card profissional-2 reveal">
+      <article class="profissional-card reveal">
         <div class="profissional-foto">
           <picture>
             <source srcset="img/natalia-cortez.webp" type="image/webp">
@@ -268,7 +271,7 @@
       <span class="eyebrow">Como funciona</span>
       <h2>Um processo claro, do primeiro contato à solução</h2>
     </div>
- 
+
     <div class="etapas">
       <div class="etapa reveal">
         <div class="marcador">1</div>
@@ -293,7 +296,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- =========================================================
      DIFERENCIAIS
      ========================================================= -->
@@ -305,7 +308,7 @@
       <p>Um trabalho jurídico construído sobre confiança, clareza e comprometimento genuíno.</p>
     </div>
   </div>
- 
+
   <div class="container">
     <div class="grid-diferenciais reveal">
       <div class="item-diferencial">
@@ -341,7 +344,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- =========================================================
      PERGUNTAS FREQUENTES
      ========================================================= -->
@@ -351,7 +354,7 @@
       <span class="eyebrow">Dúvidas comuns</span>
       <h2>Perguntas frequentes sobre o atendimento jurídico</h2>
     </div>
- 
+
     <div class="faq-lista reveal">
       <div class="faq-item">
         <button class="faq-pergunta" id="faq-pergunta-1" aria-expanded="false" aria-controls="faq-resposta-1">
@@ -396,7 +399,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- =========================================================
      DEPOIMENTOS
      ========================================================= -->
@@ -406,13 +409,13 @@
       <span class="eyebrow">Depoimentos</span>
       <h2>O que dizem os clientes</h2>
     </div>
- 
+
     <div class="grid-depoimentos">
       <div class="card-depoimento reveal">
         <span class="aspas">"</span>
         <p> Meu processo estava arquivado e era sigiloso,
            então eu não estava conseguindo entender direito o que precisava fazer.
-            Desde o primeiro atendimento, me senti muito ouvida e acolhida. 
+            Desde o primeiro atendimento, me senti muito ouvida e acolhida.
             As doutoras tiveram muita paciência para me explicar tudo de uma forma que eu realmente conseguia entender,
              sem aquele juridiquês que deixa a gente ainda mais perdida.</p>
         <div class="autor">
@@ -426,10 +429,10 @@
       <div class="card-depoimento reveal">
         <span class="aspas">"</span>
         <p>Só tenho a agradecer às doutoras por terem pegado o meu caso.
-           Eu já tinha procurado outros dois advogados e, infelizmente, 
-           não consegui resolver a situação. Com elas foi diferente. 
+           Eu já tinha procurado outros dois advogados e, infelizmente,
+           não consegui resolver a situação. Com elas foi diferente.
            Tive todo o apoio e a atenção necessários para entender o que realmente estava acontecendo e o que precisava ser feito.
-           Depois de muito tempo tentando resolver essa questão, 
+           Depois de muito tempo tentando resolver essa questão,
            finalmente consegui solucionar tudo. Sou muito grato por toda a dedicação e pelo suporte que recebi!</p>
         <div class="autor">
           <div class="avatar">C</div>
@@ -441,9 +444,9 @@
       </div>
       <div class="card-depoimento reveal">
         <span class="aspas">"</span>
-        <p>Uma coisa que gostei muito foi o acompanhamento. 
+        <p>Uma coisa que gostei muito foi o acompanhamento.
           Eu não precisava ficar correndo atrás para saber o que estava acontecendo,
-           porque elas sempre me atualizavam sobre o andamento e me explicavam os próximos passos. 
+           porque elas sempre me atualizavam sobre o andamento e me explicavam os próximos passos.
            Me senti realmente amparado durante todo o processo e sou muito grato por isso.</p>
         <div class="autor">
           <div class="avatar">P</div>
@@ -456,7 +459,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- =========================================================
      CTA WHATSAPP
      ========================================================= -->
@@ -471,7 +474,7 @@
     </a>
   </div>
 </section>
- 
+
 <!-- =========================================================
      CONTATO
      ========================================================= -->
@@ -479,8 +482,8 @@
   <div class="container contato-grid">
     <div class="contato-info reveal">
       <span class="eyebrow">Contato</span>
-      <h2 style="margin-bottom: 30px;">Vamos conversar sobre o seu caso</h2>
- 
+      <h2>Vamos conversar sobre o seu caso</h2>
+
       <div class="item-contato">
         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
         <div>
@@ -505,13 +508,13 @@
           <div class="valor">Segunda a sexta, 9h às 18h</div>
         </div>
       </div>
- 
-      
+
+
     </div>
- 
+
     <div class="reveal">
       <div class="form-card">
-        <h3 style="margin-bottom:26px;">Envie uma mensagem</h3>
+        <h3>Envie uma mensagem</h3>
         <form id="formContato" novalidate>
           <div class="form-linha">
             <div class="campo" id="campoNome">
@@ -525,21 +528,21 @@
               <span class="erro" id="erroTelefone">Informe um telefone válido.</span>
             </div>
           </div>
- 
+
           <div class="campo" id="campoEmail">
             <label for="email">E-mail</label>
             <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com.br" autocomplete="email" required aria-describedby="erroEmail">
             <span class="erro" id="erroEmail">Informe um e-mail válido.</span>
           </div>
- 
+
           <div class="campo" id="campoMensagem">
             <label for="mensagem">Mensagem</label>
             <textarea id="mensagem" name="mensagem" placeholder="Descreva brevemente o seu caso..." required aria-describedby="erroMensagem"></textarea>
             <span class="erro" id="erroMensagem">Escreva uma breve mensagem.</span>
           </div>
- 
-          <button type="submit" class="btn btn-dourado" style="width:100%;">Enviar mensagem pelo WhatsApp</button>
- 
+
+          <button type="submit" class="btn btn-dourado btn-bloco">Enviar mensagem pelo WhatsApp</button>
+
           <div class="form-mensagem-status" id="statusFormulario" role="status" aria-live="polite">
             Abrindo o WhatsApp com sua mensagem pronta...
           </div>
@@ -548,7 +551,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- =========================================================
      FOOTER
      ========================================================= -->
@@ -559,11 +562,11 @@
         <div class="nome">Gomes & Cortez Advocacia</div>
         <p>Atuação jurídica pautada em ética, técnica e proximidade com o cliente, buscando sempre a
         melhor solução para o seu caso.</p>
-        <div class="footer-social" style="margin-top:20px;">
+        <div class="footer-social">
           <a href="https://www.instagram.com/adv.gomescortez/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
         </div>
       </div>
- 
+
       <div class="footer-col">
         <h3>Links rápidos</h3>
         <ul>
@@ -574,7 +577,7 @@
           <li><a href="#contato">Contato</a></li>
         </ul>
       </div>
- 
+
       <div class="footer-col">
         <h3>Áreas de atuação</h3>
         <ul>
@@ -583,7 +586,7 @@
           <li><a href="#areas">Direito de Família</a></li>
         </ul>
       </div>
- 
+
       <div class="footer-col">
         <h3>Contato</h3>
         <ul>
@@ -592,22 +595,22 @@
         </ul>
       </div>
     </div>
- 
+
     <div class="footer-baixo">
       <span>&copy; <span id="anoAtual"></span> Gomes & Cortez Advocacia. Todos os direitos reservados.</span>
       <span>Site desenvolvido por <a href="https://gomessites.com.br" target="_blank" rel="noopener" class="link-credito">gomessites.com.br</a></span>
     </div>
   </div>
 </footer>
- 
+
 <a href="https://wa.me/5561996106388?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20atendimento." class="flutuante-whatsapp link-whatsapp" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
   <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
 </a>
 <button class="voltar-topo" id="voltarTopo" aria-label="Voltar ao topo">
   <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
 </button>
- 
+
 <script src="js/main.js"></script>
- 
+
 </body>
 </html>

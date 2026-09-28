@@ -1,0 +1,8 @@
+# Padroniza quebras de linha (LF) no repositório
+* text=auto eol=lf
+
+# Arquivos binários
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.webp binary
