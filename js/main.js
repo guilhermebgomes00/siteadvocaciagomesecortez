@@ -17,14 +17,16 @@
 
 
   const header = document.getElementById("header");
+  // Header transparente sobre o hero; ganha fundo claro ao rolar
+  function atualizarHeader(){
+    header.classList.toggle("scrolled", window.scrollY > 20);
+  }
   window.addEventListener("scroll", function(){
-    if(window.scrollY > 20){
-      header.classList.add("scrolled");
-    } else {
-      header.classList.remove("scrolled");
-    }
+    atualizarHeader();
     toggleVoltarTopo();
+    agendarSecaoAtual();
   }, { passive: true });
+  atualizarHeader(); // página aberta já rolada (ex.: ao recarregar no meio)
 
   const menu = document.getElementById("menuPrincipal");
   const btnMenu = document.getElementById("btnMenuMobile");
@@ -59,6 +61,29 @@
   });
 
   /* =========================================================
+     MENU: DESTACA A SEÇÃO QUE ESTÁ NA TELA (aria-current)
+     ========================================================= */
+  const linksMenu = [...document.querySelectorAll("#menuPrincipal .link-menu")];
+  const secoesMenu = linksMenu
+    .map(function(a){ return document.querySelector(a.getAttribute("href")); })
+    .filter(function(s){ return s && s.id !== "topo"; });
+  let quadroPendente = false;
+  function atualizarSecaoAtual(){
+    quadroPendente = false;
+    const linha = header.getBoundingClientRect().bottom + window.innerHeight * 0.3;
+    let atual = "#topo";
+    secoesMenu.forEach(function(s){ if (s.getBoundingClientRect().top <= linha) atual = "#" + s.id; });
+    linksMenu.forEach(function(a){
+      if (a.getAttribute("href") === atual) a.setAttribute("aria-current", "location");
+      else a.removeAttribute("aria-current");
+    });
+  }
+  function agendarSecaoAtual(){
+    if (!quadroPendente){ quadroPendente = true; requestAnimationFrame(atualizarSecaoAtual); }
+  }
+  atualizarSecaoAtual();
+
+  /* =========================================================
      FAQ — abrir/fechar
      ========================================================= */
   document.querySelectorAll(".faq-item").forEach(function(item){
@@ -78,20 +103,6 @@
       }
     });
   });
-
-  /* =========================================================
-     ANIMAÇÃO DE ENTRADA AO ROLAR
-     ========================================================= */
-  const elementosReveal = document.querySelectorAll(".reveal");
-  const observador = new IntersectionObserver(function(entradas){
-    entradas.forEach(function(entrada){
-      if(entrada.isIntersecting){
-        entrada.target.classList.add("visivel");
-        observador.unobserve(entrada.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  elementosReveal.forEach(function(el){ observador.observe(el); });
 
   /* =========================================================
      BOTÃO VOLTAR AO TOPO

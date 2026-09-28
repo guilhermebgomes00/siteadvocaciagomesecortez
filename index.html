@@ -72,7 +72,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -80,6 +80,7 @@
 </head>
 <body>
 
+<a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
 <div id="topo"></div>
 
 <!-- =========================================================
@@ -113,22 +114,14 @@
 </header>
 <div class="overlay-menu" id="overlayMenu"></div>
 
+<main id="conteudo" tabindex="-1">
+
 <!-- =========================================================
      HERO
      ========================================================= -->
 <section class="hero">
-  <div class="hero-brilho"></div>
-  <svg class="hero-padrao" viewBox="0 0 220 220" aria-hidden="true" focusable="false">
-    <g fill="none" stroke="rgba(210,185,140,0.6)" stroke-width="1.4">
-      <rect x="22" y="22" width="40" height="40" transform="rotate(45 42 42)"/>
-      <rect x="70" y="70" width="40" height="40" transform="rotate(45 90 90)"/>
-      <rect x="0" y="96" width="40" height="40" transform="rotate(45 20 116)"/>
-      <rect x="96" y="0" width="40" height="40" transform="rotate(45 116 20)"/>
-      <rect x="46" y="46" width="40" height="40" transform="rotate(45 66 66)" stroke="var(--dourado-claro)" stroke-width="1.6"/>
-    </g>
-  </svg>
   <div class="container hero-grid">
-    <div class="hero-texto reveal">
+    <div class="hero-texto">
       <span class="eyebrow">Consultoria e assessoria jurídica</span>
       <h1>A defesa dos seus direitos começa com <em>quem entende do assunto</em></h1>
       <p>
@@ -142,17 +135,8 @@
       </div>
     </div>
 
-    <div class="hero-imagem reveal">
-      <div class="hero-bloco" aria-hidden="true"></div>
-      <div class="hero-bloco-2" aria-hidden="true"></div>
-      <div class="moldura">
-        <picture>
-          <source srcset="img/capa.webp" type="image/webp">
-          <img src="img/capa.jpg" width="612" height="408" fetchpriority="high"
-            alt="Martelo da justiça sobre livros jurídicos em uma mesa de madeira">
-        </picture>
-      </div>
-    </div>
+    <!-- O "&" de Gomes & Cortez, decorativo (ver .hero-ecomercial no CSS) -->
+    <span class="hero-ecomercial" aria-hidden="true">&amp;</span>
   </div>
 </section>
 
@@ -169,7 +153,7 @@
      ========================================================= -->
 <section class="profissionais" id="sobre">
   <div class="container">
-    <div class="section-head centro reveal">
+    <div class="section-head centro">
       <span class="eyebrow">Nossa equipe</span>
       <h2>Conheça nossas profissionais</h2>
       <p>Atendimento jurídico personalizado, com experiência, ética e compromisso.</p>
@@ -180,7 +164,7 @@
       <!-- =====================================================
            ADVOGADA 1 — GIOVANNA GOMES
            ===================================================== -->
-      <article class="profissional-card reveal">
+      <article class="profissional-card">
         <div class="profissional-foto">
           <picture>
             <source srcset="img/giovanna-gomes.webp" type="image/webp">
@@ -204,7 +188,7 @@
       <!-- =====================================================
            ADVOGADA 2 — NATÁLIA CORTEZ
            ===================================================== -->
-      <article class="profissional-card reveal">
+      <article class="profissional-card">
         <div class="profissional-foto">
           <picture>
             <source srcset="img/natalia-cortez.webp" type="image/webp">
@@ -234,26 +218,26 @@
      ========================================================= -->
 <section class="areas" id="areas">
   <div class="container">
-    <div class="section-head centro reveal">
+    <div class="section-head centro">
       <span class="eyebrow">Áreas de atuação</span>
       <h2>Especialidades jurídicas</h2>
       <p>Consultoria e assessoria jurídica.</p>
     </div>
 
     <div class="grid-areas">
-      <div class="card-area reveal">
+      <div class="card-area">
         <div class="icone"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></div>
         <h3>Direito Tributário</h3>
         <p>Consultoria e assessoria jurídica na área tributária.</p>
       </div>
 
-      <div class="card-area reveal">
+      <div class="card-area">
         <div class="icone"><i class="fa-solid fa-landmark" aria-hidden="true"></i></div>
         <h3>Direito das Sucessões</h3>
         <p>Consultoria e assessoria jurídica na área de sucessões.</p>
       </div>
 
-      <div class="card-area reveal">
+      <div class="card-area">
         <div class="icone"><i class="fa-solid fa-people-roof" aria-hidden="true"></i></div>
         <h3>Direito de Família</h3>
         <p>Consultoria e assessoria jurídica na área de família.</p>
@@ -267,28 +251,28 @@
      ========================================================= -->
 <section class="como-funciona">
   <div class="container">
-    <div class="section-head reveal">
+    <div class="section-head">
       <span class="eyebrow">Como funciona</span>
       <h2>Um processo claro, do primeiro contato à solução</h2>
     </div>
 
     <div class="etapas">
-      <div class="etapa reveal">
+      <div class="etapa">
         <div class="marcador">1</div>
         <h3>Primeiro contato</h3>
         <p>Você entra em contato e apresenta o seu caso com total sigilo.</p>
       </div>
-      <div class="etapa reveal">
+      <div class="etapa">
         <div class="marcador">2</div>
         <h3>Análise do caso</h3>
         <p>Avaliação detalhada da documentação e do contexto jurídico envolvido.</p>
       </div>
-      <div class="etapa reveal">
+      <div class="etapa">
         <div class="marcador">3</div>
         <h3>Estratégia jurídica</h3>
         <p>Definição do melhor caminho, com explicação clara das opções disponíveis.</p>
       </div>
-      <div class="etapa reveal">
+      <div class="etapa">
         <div class="marcador">4</div>
         <h3>Acompanhamento</h3>
         <p>Atualizações periódicas sobre o andamento do processo até a sua conclusão.</p>
@@ -302,7 +286,7 @@
      ========================================================= -->
 <section class="diferenciais" id="diferenciais">
   <div class="container">
-    <div class="section-head centro reveal">
+    <div class="section-head centro">
       <span class="eyebrow">Diferenciais</span>
       <h2>Por que escolher a Gomes &amp; Cortez</h2>
       <p>Um trabalho jurídico construído sobre confiança, clareza e comprometimento genuíno.</p>
@@ -310,7 +294,7 @@
   </div>
 
   <div class="container">
-    <div class="grid-diferenciais reveal">
+    <div class="grid-diferenciais">
       <div class="item-diferencial">
         <i class="fa-solid fa-user-check" aria-hidden="true"></i>
         <h3>Atendimento personalizado</h3>
@@ -350,12 +334,12 @@
      ========================================================= -->
 <section class="faq" id="faq">
   <div class="container">
-    <div class="section-head centro reveal">
+    <div class="section-head centro">
       <span class="eyebrow">Dúvidas comuns</span>
       <h2>Perguntas frequentes sobre o atendimento jurídico</h2>
     </div>
 
-    <div class="faq-lista reveal">
+    <div class="faq-lista">
       <div class="faq-item">
         <button class="faq-pergunta" id="faq-pergunta-1" aria-expanded="false" aria-controls="faq-resposta-1">
           Como funciona a primeira consulta?
@@ -405,13 +389,13 @@
      ========================================================= -->
 <section class="depoimentos" id="depoimentos">
   <div class="container">
-    <div class="section-head centro reveal">
+    <div class="section-head centro">
       <span class="eyebrow">Depoimentos</span>
       <h2>O que dizem os clientes</h2>
     </div>
 
     <div class="grid-depoimentos">
-      <div class="card-depoimento reveal">
+      <div class="card-depoimento">
         <span class="aspas">"</span>
         <p> Meu processo estava arquivado e era sigiloso,
            então eu não estava conseguindo entender direito o que precisava fazer.
@@ -422,11 +406,11 @@
           <div class="avatar">M</div>
           <div>
             <div class="nome">Jéssica Vasconselos</div>
-            <div class="cargo">Cliente — Direito de Família</div>
+            <div class="cargo">Cliente, Direito de Família</div>
           </div>
         </div>
       </div>
-      <div class="card-depoimento reveal">
+      <div class="card-depoimento">
         <span class="aspas">"</span>
         <p>Só tenho a agradecer às doutoras por terem pegado o meu caso.
            Eu já tinha procurado outros dois advogados e, infelizmente,
@@ -438,11 +422,11 @@
           <div class="avatar">C</div>
           <div>
             <div class="nome">Marcelo Da Cunha</div>
-            <div class="cargo">Cliente — Direito Sucessório</div>
+            <div class="cargo">Cliente, Direito Sucessório</div>
           </div>
         </div>
       </div>
-      <div class="card-depoimento reveal">
+      <div class="card-depoimento">
         <span class="aspas">"</span>
         <p>Uma coisa que gostei muito foi o acompanhamento.
           Eu não precisava ficar correndo atrás para saber o que estava acontecendo,
@@ -452,7 +436,7 @@
           <div class="avatar">P</div>
           <div>
             <div class="nome">Karl russmann</div>
-            <div class="cargo">Cliente — Direito Tributário</div>
+            <div class="cargo">Cliente, Direito Tributário</div>
           </div>
         </div>
       </div>
@@ -480,7 +464,7 @@
      ========================================================= -->
 <section class="contato" id="contato">
   <div class="container contato-grid">
-    <div class="contato-info reveal">
+    <div class="contato-info">
       <span class="eyebrow">Contato</span>
       <h2>Vamos conversar sobre o seu caso</h2>
 
@@ -512,7 +496,7 @@
 
     </div>
 
-    <div class="reveal">
+    <div>
       <div class="form-card">
         <h3>Envie uma mensagem</h3>
         <form id="formContato" novalidate>
@@ -551,6 +535,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- =========================================================
      FOOTER
