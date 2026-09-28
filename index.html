@@ -17,11 +17,12 @@
  
 <!-- =========================================================
      GUIA RÁPIDO DE EDIÇÃO
-     - Nome do advogado, OAB, telefone, e-mail e endereço:
+     - Nome do escritório, telefone, e-mail e horário:
        procure por "EDITAR:" nos comentários abaixo.
      - Cores: variáveis no início do bloco <style> (:root).
-     - Link do WhatsApp: variável JS "whatsappNumero" no final do arquivo.
-     - Imagens: troque as URLs do Unsplash por fotos reais quando tiver.
+     - Link do WhatsApp: variável JS "whatsappNumero" no final do arquivo
+       (os links "wa.me" do rodapé e da seção Contato usam o mesmo número).
+     - Imagens: arquivos .jpg na mesma pasta deste HTML.
      ========================================================= -->
  
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,10 +46,11 @@
     --branco: #ffffff;
     --bege: #FAF6EC;
     --off-white: #F2ECDD;
-    --neutro-100: #EEF1F7;
-    --neutro-300: #DCE2EF;
-    --neutro-500: #7B8498;
-    --neutro-700: #4C556B;
+    /* Neutros em tons quentes, alinhados à paleta marrom/dourado */
+    --neutro-100: #F1ECE2;
+    --neutro-300: #DDD3C2;
+    --neutro-500: #8A7C6B;
+    --neutro-700: #574B3F;
     --texto-principal: #2A2119;
     --texto-suave: #7A6E60;
     --borda: rgba(90,74,59,0.14);
@@ -1020,6 +1022,12 @@
     color: var(--texto-principal);
     font-weight: 500;
   }
+  .contato-info .item-contato a.valor{
+    display: inline-block;
+    word-break: break-word;
+    transition: color .2s ease;
+  }
+  .contato-info .item-contato a.valor:hover{ color: var(--dourado); }
   .mapa-espaco{
     margin-top: 10px;
     border-radius: var(--raio-sm);
@@ -1298,7 +1306,7 @@
       <div class="moldura">
         <img
           src="capa_3.jpg"
-          alt="Advogado em escritório analisando documentos jurídicos">
+          alt="Martelo da justiça sobre livros jurídicos em uma mesa de madeira">
       </div>
     </div>
   </div>
@@ -1330,30 +1338,28 @@
            ===================================================== -->
       <article class="profissional-card reveal">
         <div class="profissional-foto">
-          <img src="giovanna_prof2.jpg" alt="Dra. Giovanna Gomes">
+          <img src="giovanna_prof2.jpg" alt="Dra. Giovanna Gomes, advogada">
         </div>
         <div class="profissional-info">
           <span class="eyebrow">Advogada</span>
-          <h2> Dra. Giovanna Gomes</h2>
+          <h2>Dra. Giovanna Gomes</h2>
           <p>Formada em Direito pelo Centro Universitário de Brasília, atuo auxiliando pessoas físicas e empresas a resolverem questões jurídicas com segurança e clareza. Acredito que um bom trabalho jurídico começa na escuta atenta de cada cliente.</p>
           <p>Minha atuação é pautada por três valores centrais: ética profissional, transparência em cada etapa do processo e comunicação acessível, sem o "juridiquês" que afasta as pessoas do seu próprio caso.</p>
           <ul class="sobre-lista">
             <li><i class="fa-solid fa-graduation-cap"></i> Graduação em Direito</li>
-            <li><i class="fa-solid fa-certificate"></i>Pós-graduação em Direito de Família e Sucessões e em Direito Tributário</li>
+            <li><i class="fa-solid fa-certificate"></i> Pós-graduação em Direito de Família e Sucessões e em Direito Tributário</li>
             <li><i class="fa-solid fa-building-columns"></i> OAB/DF 86.132</li>
-            <li><i class="fa-solid fa-laptop"></i> Atendimento online e Presencial</li>
+            <li><i class="fa-solid fa-laptop"></i> Atendimento online e presencial</li>
           </ul>
         </div>
       </article>
 
       <!-- =====================================================
-           ADVOGADA 2 — Natália Cortez
+           ADVOGADA 2 — NATÁLIA CORTEZ
            ===================================================== -->
       <article class="profissional-card profissional-2 reveal">
         <div class="profissional-foto">
-          <!-- COLOQUE A FOTO DA ADVOGADA 2 NA MESMA PASTA DO HTML
-               e troque "advogada2.jpg" pelo nome do arquivo. -->
-          <img src="nat_profi1.jpg" alt="Foto profissional da Advogada 2">
+          <img src="nat_profi1.jpg" alt="Dra. Natália Cortez, advogada">
         </div>
         <div class="profissional-info">
           <span class="eyebrow">Advogada</span>
@@ -1364,7 +1370,7 @@
             <li><i class="fa-solid fa-graduation-cap"></i> Graduação em Direito</li>
             <li><i class="fa-solid fa-certificate"></i> Pós-graduação em Direito de Família e Sucessões e em Direito Tributário</li>
             <li><i class="fa-solid fa-building-columns"></i> OAB/DF 84.602</li>
-            <li><i class="fa-solid fa-laptop"></i> Atendimento online e Presencial</li>
+            <li><i class="fa-solid fa-laptop"></i> Atendimento online e presencial</li>
           </ul>
         </div>
       </article>
@@ -1561,9 +1567,7 @@
            então eu não estava conseguindo entender direito o que precisava fazer.
             Desde o primeiro atendimento, me senti muito ouvida e acolhida. 
             As doutoras tiveram muita paciência para me explicar tudo de uma forma que eu realmente conseguia entender,
-             sem aquele juridiquês que deixa a gente ainda mais perdida.
-
-.</p>
+             sem aquele juridiquês que deixa a gente ainda mais perdida.</p>
         <div class="autor">
           <div class="avatar">M</div>
           <div>
@@ -1579,7 +1583,7 @@
            não consegui resolver a situação. Com elas foi diferente. 
            Tive todo o apoio e a atenção necessários para entender o que realmente estava acontecendo e o que precisava ser feito.
            Depois de muito tempo tentando resolver essa questão, 
-           finalmente consegui solucionar tudo. Sou muito grato por toda a dedicação e pelo suporte que recebi!.</p>
+           finalmente consegui solucionar tudo. Sou muito grato por toda a dedicação e pelo suporte que recebi!</p>
         <div class="autor">
           <div class="avatar">C</div>
           <div>
@@ -1598,7 +1602,7 @@
           <div class="avatar">P</div>
           <div>
             <div class="nome">Karl russmann</div>
-            <div class="cargo">Cliente — Direito  Tributário</div>
+            <div class="cargo">Cliente — Direito Tributário</div>
           </div>
         </div>
       </div>
@@ -1635,7 +1639,7 @@
         <div>
           <div class="rotulo">WhatsApp</div>
           <!-- EDITAR: whatsapp -->
-          <div class="valor">(61) 99610-6388</div>
+          <a class="valor" href="https://wa.me/5561996106388" target="_blank" rel="noopener">(61) 99610-6388</a>
         </div>
       </div>
       <div class="item-contato">
@@ -1643,7 +1647,7 @@
         <div>
           <div class="rotulo">E-mail</div>
           <!-- EDITAR: e-mail -->
-          <div class="valor">adv.gomescortez@gmail.com</div>
+          <a class="valor" href="mailto:adv.gomescortez@gmail.com">adv.gomescortez@gmail.com</a>
         </div>
       </div>
       <div class="item-contato">
@@ -1720,6 +1724,7 @@
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#areas">Áreas de Atuação</a></li>
           <li><a href="#diferenciais">Diferenciais</a></li>
+          <li><a href="#contato">Contato</a></li>
         </ul>
       </div>
  
@@ -1735,8 +1740,8 @@
       <div class="footer-col">
         <h4>Contato</h4>
         <ul>
-          <li><a href="#contato">+55 (61) 99610-6388</a></li>
-          <li><a href="#contato">adv.gomescortez@gmail.com</a></li>
+          <li><a href="https://wa.me/5561996106388" target="_blank" rel="noopener">+55 (61) 99610-6388</a></li>
+          <li><a href="mailto:adv.gomescortez@gmail.com">adv.gomescortez@gmail.com</a></li>
         </ul>
       </div>
     </div>
