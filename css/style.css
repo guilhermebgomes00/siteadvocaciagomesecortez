@@ -155,22 +155,22 @@ section{ position: relative; }
 }
 
 /* ===================== ENTRADA DO HERO =====================
-   Único movimento automático da página: texto em sequência e o "&" surgindo */
+   Único movimento automático da página: texto em sequência e a foto surgindo */
 @keyframes surgir{
   from{ opacity: 0; transform: translateY(14px); }
   to{ opacity: 1; transform: none; }
 }
-@keyframes revelar-ecomercial{
-  from{ opacity: 0; transform: scale(.94) rotate(-3deg); }
-  to{ opacity: 1; transform: none; }
+@keyframes revelar-foto{
+  from{ opacity: 0; }
+  to{ opacity: 1; }
 }
 .hero-texto > *{ animation: surgir .9s cubic-bezier(.2,.7,.2,1) both; }
 .hero-texto > :nth-child(2){ animation-delay: .12s; }
 .hero-texto > :nth-child(3){ animation-delay: .24s; }
 .hero-texto > :nth-child(4){ animation-delay: .36s; }
-.hero-ecomercial{ animation: revelar-ecomercial 1.4s cubic-bezier(.2,.7,.2,1) .25s both; }
+.hero-foto{ animation: revelar-foto 1.4s cubic-bezier(.2,.7,.2,1) .25s both; }
 @media (prefers-reduced-motion: reduce){
-  .hero-texto > *, .hero-ecomercial{ animation: none; }
+  .hero-texto > *, .hero-foto{ animation: none; }
 }
 
 /* ===================== BOTÕES ===================== */
@@ -390,12 +390,10 @@ nav.menu-principal a[aria-current]{ color: var(--marrom); }
   position: relative;
 }
 .hero-grid{
-  display:grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 48px;
-  align-items:center;
   position: relative;
+  z-index: 1;   /* texto por cima da foto */
 }
+.hero-texto{ max-width: min(560px, 40vw); }
 .hero-texto .eyebrow{ color: var(--dourado-claro); }
 .hero-texto h1{
   color: var(--branco);
@@ -417,34 +415,44 @@ nav.menu-principal a[aria-current]{ color: var(--marrom); }
   flex-wrap: wrap;
 }
 
-/* O "&" de Gomes & Cortez: a sociedade das duas advogadas como elemento central,
-   em dourado com degradê suave. */
-.hero-ecomercial{
-  display: block;
-  justify-self: center;
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: clamp(15rem, 31vw, 29rem);
-  line-height: .8;
-  color: transparent;
-  background: linear-gradient(160deg, #E6D5B3 0%, var(--dourado-claro) 35%, var(--dourado) 75%, #8A6D42 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-stroke: 1px rgba(216,194,153,0.45);
-  /* espaço extra: o desenho da letra passa da caixa e o dourado só é pintado dentro dela */
-  padding: .15em .08em .12em;
-  margin: -.15em 0 -.12em;
-  user-select: none;
+/* Foto das duas advogadas: metade direita do topo, de ponta a ponta.
+   Só a borda esquerda (onde encontra o texto) se dissolve no marrom. */
+.hero-foto{
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: min(58vw, 1000px);
+}
+.hero-foto img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 18%;   /* mantém os rostos no quadro em qualquer proporção */
+}
+.hero-foto::after{
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, var(--tabaco) 0%, rgba(42,32,25,0.75) 8%, rgba(42,32,25,0) 24%),
+    linear-gradient(to top, rgba(42,32,25,0.55) 0%, rgba(42,32,25,0) 22%);
 }
 
-@media (max-width: 940px){
-  .hero-grid{ grid-template-columns: 1fr; gap: 8px; }
+@media (max-width: 1100px){
+  /* celular e tablet: texto primeiro, foto depois, na largura toda da tela */
+  /* fundo liso: o brilho do desktop criaria uma emenda visível no topo da foto */
+  .hero{ display: flex; flex-direction: column; padding-bottom: 0; background: var(--tabaco); }
+  .hero-texto{ max-width: none; }
   .hero-texto h1{ max-width: 18ch; }
-  .hero-ecomercial{
-    font-size: clamp(9rem, 40vw, 15rem);
-    line-height: 1;       /* no celular a letra precisa da caixa inteira para não encostar nos botões */
-    justify-self: end;
-    margin: 28px -8px -20px 0;
+  .hero-foto{
+    position: relative;
+    order: 2;
+    width: 100%;
+    height: min(96vw, 900px);   /* acompanha a largura: a foto aparece quase inteira */
+    margin-top: 40px;
+  }
+  .hero-foto::after{
+    background: linear-gradient(to bottom, var(--tabaco) 0%, rgba(42,32,25,0) 32%);
   }
 }
 

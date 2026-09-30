@@ -120,6 +120,12 @@
      HERO
      ========================================================= -->
 <section class="hero">
+  <!-- Foto das duas advogadas: ocupa a metade direita do topo, de ponta a ponta (ver .hero-foto no CSS) -->
+  <picture class="hero-foto">
+    <source srcset="img/advogadas.webp" type="image/webp">
+    <img src="img/advogadas.jpg" width="1100" height="1059" fetchpriority="high"
+      alt="Dra. Giovanna Gomes e Dra. Natália Cortez, advogadas do escritório Gomes &amp; Cortez">
+  </picture>
   <div class="container hero-grid">
     <div class="hero-texto">
       <span class="eyebrow">Consultoria e assessoria jurídica</span>
@@ -134,9 +140,6 @@
         <a href="#sobre" class="btn btn-outline">Conheça as Profissionais</a>
       </div>
     </div>
-
-    <!-- O "&" de Gomes & Cortez, decorativo (ver .hero-ecomercial no CSS) -->
-    <span class="hero-ecomercial" aria-hidden="true">&amp;</span>
   </div>
 </section>
 
