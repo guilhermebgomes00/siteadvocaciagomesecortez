@@ -390,10 +390,11 @@ nav.menu-principal a[aria-current]{ color: var(--marrom); }
   position: relative;
 }
 .hero-grid{
-  position: relative;
-  z-index: 1;   /* texto por cima da foto */
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 64px;
+  align-items: center;
 }
-.hero-texto{ max-width: min(560px, 40vw); }
 .hero-texto .eyebrow{ color: var(--dourado-claro); }
 .hero-texto h1{
   color: var(--branco);
@@ -415,45 +416,37 @@ nav.menu-principal a[aria-current]{ color: var(--marrom); }
   flex-wrap: wrap;
 }
 
-/* Foto das duas advogadas: metade direita do topo, de ponta a ponta.
-   Só a borda esquerda (onde encontra o texto) se dissolve no marrom. */
+/* Foto das duas advogadas em moldura, com um painel dourado deslocado atrás
+   para dar profundidade e destaque */
 .hero-foto{
-  position: absolute;
-  top: 0; right: 0; bottom: 0;
-  width: min(58vw, 1000px);
+  position: relative;
+  justify-self: center;
+  width: calc(100% - 28px);
+  max-width: 440px;
+  margin: 0 28px 28px 0;   /* espaço para o painel dourado aparecer */
 }
-.hero-foto img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 18%;   /* mantém os rostos no quadro em qualquer proporção */
-}
-.hero-foto::after{
+.hero-foto::before{
   content: '';
   position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(to right, var(--tabaco) 0%, rgba(42,32,25,0.75) 8%, rgba(42,32,25,0) 24%),
-    linear-gradient(to top, rgba(42,32,25,0.55) 0%, rgba(42,32,25,0) 22%);
+  top: 28px; left: 28px;
+  right: -28px; bottom: -28px;
+  background: linear-gradient(150deg, var(--dourado-claro), var(--dourado) 70%, #8A6D42);
+  border-radius: var(--raio-lg);
+}
+.hero-foto img{
+  position: relative;
+  width: 100%;
+  height: auto;
+  border-radius: var(--raio-lg);
+  box-shadow: 0 30px 60px -30px rgba(0,0,0,0.6);
 }
 
-@media (max-width: 1100px){
-  /* celular e tablet: texto primeiro, foto depois, na largura toda da tela */
-  /* fundo liso: o brilho do desktop criaria uma emenda visível no topo da foto */
-  .hero{ display: flex; flex-direction: column; padding-bottom: 0; background: var(--tabaco); }
-  .hero-texto{ max-width: none; }
+@media (max-width: 940px){
+  /* celular e tablet: texto primeiro, foto depois */
+  .hero-grid{ grid-template-columns: 1fr; gap: 48px; }
   .hero-texto h1{ max-width: 18ch; }
-  .hero-foto{
-    position: relative;
-    order: 2;
-    width: 100%;
-    height: min(96vw, 900px);   /* acompanha a largura: a foto aparece quase inteira */
-    margin-top: 40px;
-  }
-  .hero-foto::after{
-    background: linear-gradient(to bottom, var(--tabaco) 0%, rgba(42,32,25,0) 32%);
-  }
+  .hero-foto{ width: calc(100% - 18px); max-width: 380px; margin: 0 18px 18px 0; }
+  .hero-foto::before{ top: 18px; left: 18px; right: -18px; bottom: -18px; }
 }
 
 /* ===================== FAIXA CONFIANÇA ===================== */
