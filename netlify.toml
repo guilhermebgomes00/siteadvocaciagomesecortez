@@ -2,21 +2,23 @@
 [build]
   publish = "."
 
-# Cache de uma semana para imagens, CSS e JS; o HTML sempre é revalidado.
+# Imagens, CSS e JS: o navegador sempre confere com a Netlify se o arquivo mudou
+# (resposta rápida "304 não modificado" quando não mudou). Assim cada deploy
+# aparece na hora para todos, inclusive ao trocar uma foto mantendo o mesmo nome.
 [[headers]]
   for = "/img/*"
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/*"
